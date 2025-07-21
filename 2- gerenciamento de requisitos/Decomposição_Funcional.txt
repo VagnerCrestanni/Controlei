@@ -1,0 +1,115 @@
+🧩 Decomposição Funcional do App Financeiro
+1. 🏗️ Estrutura Base do Projeto
+Objetivo: Configurar o ambiente e ferramentas de desenvolvimento
+
+	Configurar ambiente React (Next.js recomendado) e Node.js (Express)
+
+	Configurar TailwindCSS para estilização
+
+	Instalar banco de dados (PostgreSQL ou MongoDB)
+
+	Definir arquitetura de pastas (ex: components, services, pages, hooks, utils)
+
+	Configurar responsividade para mobile e desktop
+
+2. 👥 Gerenciamento de Usuários
+Objetivo: Gerenciar dois usuários (ex: Vagner e Lovane)
+
+	Criar modelo de usuário (nome, ID, cor/avatar para diferenciação)
+
+	Criar contexto de autenticação (opcional) ou seleção de usuário ao lançar valores
+
+	Associar transações a um usuário específico
+
+3. 💾 Banco de Dados (modelos iniciais)
+Objetivo: Estruturar os dados do app
+
+	User: id, nome, avatar
+
+	Transaction: id, tipo (receita, despesa, investimento), valor, data, descrição, categoria, instituição, formaPagamento, userId
+
+	Goal: id, tipo, valorMeta, mês, ano, atingido
+
+	MonthSummary: mês, totalReceitas, totalDespesas, totalInvestimentos (gerado dinamicamente ou armazenado)
+
+4. 💡 Funcionalidades de Cadastro
+Objetivo: Inserir dados de forma fácil
+
+	4.1 Receita
+	Campo: valor, quem depositou, data
+
+	Exibição: total do mês, histórico clicável
+
+	4.2 Despesa
+	Campos: valor, categoria, instituição, forma de pagamento, data
+
+	Exibição: total do mês, lista por item
+
+	4.3 Investimento
+	Campo: valor, quem investiu, data
+
+	Exibição: total investido no mês, histórico
+
+	5. 📈 Dashboard
+	Objetivo: Visualizar dados resumidos com análises
+
+	Exibição de médias mensais (receita, despesa, investimento)
+
+	Botões: Análise mensal, anual, por tipo
+
+	Gráficos (linha, barra ou pizza com Chart.js ou Recharts)
+
+	Tela inicial padrão do app
+
+6. 📋 Controle Financeiro
+Objetivo: Acompanhamento detalhado
+
+	Exibe totais por categoria e tipo
+
+	Lista interativa (ao clicar mostra histórico de lançamentos)
+
+	Separação clara entre Receita, Despesas e Investimentos
+
+	Visualização mês a mês para comparação
+
+7. 🎯 Metas
+Objetivo: Acompanhar e definir metas mensais
+
+	Cada aba (Receita, Despesa, Investimento) com seu campo de meta
+
+	Progresso visual (barra de progresso)
+
+	Aviso visual quando atinge ou ultrapassa meta
+
+8. 🗓️ Organização por Mês e Ano
+Objetivo: Controlar informações ao longo do tempo
+
+	Separar lançamentos por mês e ano
+
+	Navegação entre meses (ex: dropdown, botões de próximo/anterior)
+
+	Armazenar e exibir histórico
+
+9. 🎨 Interface do Usuário (UI/UX)
+	Objetivo: Fácil de usar, até por leigos
+
+	Menu lateral com ícones simples
+
+	Gráficos intuitivos e coloridos
+
+	Ícones com legenda (💰 Receita, 💸 Despesa, 📈 Investimento)
+
+	Botão flutuante de "Novo Lançamento"
+
+	Telas responsivas e amigáveis
+
+	10. 🔐 Extras Técnicos
+	Objetivo: Qualidade e escalabilidade
+
+	Validações de formulário
+
+	Controle de erros
+
+	Armazenamento local (ou backend)
+
+	Deploy (Vercel + Railway por exemplo)

@@ -1,0 +1,138 @@
+app controle financeiro: funcionalidades, aparencia.
+
+Deve ser compativel com computador e celular.
+
+_funcionalidade: Preciso de um app que receba os salarios meu e da vane ou seja, coloque 2 valores de pessoas diferentes
+(reconhecer quem depositou X valor) preciso de 3 abas (1º aba: Receita, 2º aba: despesas, 3º aba: investimentos).
+	Preciso que tenha uma aba de dashboards onde mostre a média dos ultimos meses de receita, Despesas e Investimentos
+e ao clicar em dashboards apareca as opçoes analise mensal, analise anual, analise de receitas, analise de despesas e analises de investimentos
+	Preciso que tenha uma aba ao lado da dahsboards que mostre seja Controle financieor, nisso precisa aparecer:
+	Na aba Receita Precisa aparecer qual o valor total depositado no mes, ao clicar em cima precisa
+aparecer os ultimos valores depositados e quem dewpositou. Ex: Vagner depositou: 1.450,00 reais.
+	Na aba despesas: Precisa aparecer qual o total de despesas, ao clicar em cima precisa aparecer todos os valores
+gastos em despesas e com qual instituição Ex: 145,00 reais gastos com: Copel.
+os campos devem aparecer como despesas com alimentação por exemplo, instituição mercado, forma de pagamento: a vista
+valor: 200,00 e data de pagamento: 30/03/2025
+Preciso que mostre mes a mes separados em campos diferentes para ter um comparativo
+	Na aba investimentos: Precisa aparecer qual o valor foi guardado para investir, ao clicar em cima apareca todos os valores
+separados para investimentos e quem separou. Ex: Lovane separou 500,00 reais para investir.
+
+O app ao abrir ira mostrar automaticamente a aba dashboards com as medias mensais de cada item(Receita, despesas e investimentos)
+ao lado tera a aba Controle financeiro, que ira mostrar cada item separado e com suas respectivas funçoes, as abas 
+dashboards e controle financeiro serão as principais, as outras serao abas secundarias das principais.
+
+	Para funcionar o App precisa trabalhar de acordo com os dias de cada mes do ano, precisa fornecer médias mensaais tanto de depositos 
+quanto de gastos e de valores investidos.
+	Preciso que o App tenha metas em cada aba, meta de depositar X por mes, ou de gastar X por mes e de investir X por mes,
+as metas devem aparecer ao clicar em cada aba respectiva (Receitas, Despesas, Investimenetos).
+
+
+App de Controle Financeiro - Funcionalidades e Organização
+1. Principais Áreas do App
+Dashboards: Visão geral dos dados financeiros (Receita, Despesas, Investimentos) com análises mensais, anuais e médias de performance.
+
+Controle Financeiro: Interface detalhada para acompanhar receitas, despesas e investimentos, com informações de quem fez a transação, instituição, forma de pagamento, e comparações mês a mês.
+
+2. Funcionalidades Detalhadas por Aba
+2.1 Receita (Entradas de Dinheiro)
+Registro de receitas: Dois campos para os valores de duas pessoas (Você e Lovane), identificando quem depositou o valor.
+
+Total do mês: Exibe o total de receitas mensais. Ao clicar, abre um histórico detalhado dos depósitos com datas e responsáveis (Ex: "Vagner depositou: R$1.450,00 em 20/03/2025").
+
+Metas de receita: Defina uma meta de receita mensal (Ex: R$5.000,00), com acompanhamento de quanto falta para atingir a meta.
+
+Comparativo mensal: Visualização dos valores recebidos mês a mês.
+
+2.2 Despesas (Saídas de Dinheiro)
+Registro de despesas: Inserção de valores gastos, especificando a instituição (Ex: Mercado, Copel), a forma de pagamento (à vista, crédito, débito), valor e data.
+
+Total de despesas: Exibe o total mensal de despesas. Ao clicar, abre um detalhamento de todas as despesas com valores, datas e instituições (Ex: "R$145,00 gastos com Copel").
+
+Metas de despesa: Defina uma meta para manter os gastos abaixo de um valor mensal (Ex: Limitar despesas a R$3.000,00).
+
+Comparativo mensal: Mostra o total gasto em diferentes categorias mês a mês, permitindo comparar gastos por categoria (alimentação, transporte, etc.).
+
+2.3 Investimentos
+Registro de investimentos: Inserção de valores separados para investimentos, identificando quem destinou o valor (Ex: "Lovane separou R$500,00 para investir em 25/03/2025").
+
+Total de investimentos: Exibe o total de investimentos feitos no mês. Ao clicar, abre um histórico detalhado dos valores e quem os destinou.
+
+Metas de investimento: Defina uma meta de quanto deseja investir por mês (Ex: R$1.000,00 mensais).
+
+Comparativo mensal: Exibe quanto foi investido a cada mês, facilitando a análise do progresso.
+
+3. Dashboards
+Média mensal: Mostra as médias dos últimos meses para receitas, despesas e investimentos, facilitando a análise de desempenho.
+
+Opções de análise:
+
+Análise mensal: Visualização detalhada de receitas, despesas e investimentos de cada mês.
+
+Análise anual: Comparação ano a ano das finanças.
+
+Análise de receitas: Gráficos e detalhes sobre as fontes de receita ao longo do tempo.
+
+Análise de despesas: Exibe os maiores gastos, categorias e tendências.
+
+Análise de investimentos: Progresso dos valores destinados a investimentos mês a mês.
+
+4. Controle Financeiro
+Acesso rápido às abas de Receita, Despesas e Investimentos, com totalizadores mensais e botões para visualizar detalhes.
+
+Histórico detalhado por mês, mostrando quem fez as transações, com qual instituição e forma de pagamento.
+
+Comparações automáticas de receitas, despesas e investimentos ao longo dos meses.
+
+5. Metas e Alertas
+Defina metas para cada aba (Receita, Despesas, Investimentos).
+
+Alertas quando estiver perto de atingir ou exceder uma meta.
+
+Recomendações automáticas para ajustar as metas com base no desempenho dos meses anteriores.
+
+6. Usabilidade
+Interface intuitiva: Layout claro e objetivo, com abas principais e secundárias organizadas.
+
+Facilidade de navegação: Ao abrir o app, a aba de dashboards será exibida, com os resumos mais importantes. Ao lado, a aba Controle Financeiro dará acesso rápido às funções detalhadas.
+
+Design responsivo: Funciona bem tanto em computadores quanto em celulares, com adaptação automática da interface para diferentes tamanhos de tela.
+
+Perfis de usuários: Identificação clara de quem fez cada transação (você ou Lovane), facilitando o controle pessoal e conjunto das finanças.
+
+7. Extras (Sugestões)
+Relatórios automáticos: Geração de relatórios mensais em PDF ou Excel com resumo de receitas, despesas e investimentos.
+
+Integração bancária: Possibilidade de conectar-se a bancos para importar automaticamente extratos de receitas e despesas.
+
+Notificações: Receba lembretes para atingir metas, alertas de despesas maiores que o normal e dicas para economizar.
+
+Suporte a múltiplas moedas: Caso precisem fazer transações em moedas diferentes.
+
+Backup na nuvem: Salvamento automático dos dados na nuvem para não perder as informações em caso de troca de dispositivo.
+
+Esse plano garante uma abordagem funcional para o app de finanças, facilitando o controle das entradas e saídas, e mantendo as finanças organizadas de forma clara, mesmo para usuários leigos.
+
+
+
+1. Frontend: React (JavaScript)
+React é uma das melhores bibliotecas para criar interfaces dinâmicas e responsivas, ideais para o seu app que precisa funcionar bem tanto em computadores quanto em dispositivos móveis.
+
+Componentização: Você pode dividir a interface em componentes reutilizáveis (como Dashboards, Controle Financeiro, e Metas).
+
+Responsividade: React tem suporte para designs responsivos, e você pode usar bibliotecas como Tailwind CSS ou Styled-components para garantir que o layout funcione bem em qualquer dispositivo.
+
+Gerenciamento de estado: Ferramentas como Redux ou Context API facilitam o controle do estado global do app, como o acompanhamento de receitas, despesas e investimentos.
+
+2. Backend: Node.js
+Node.js é excelente para o backend de um app de controle financeiro, especialmente se você deseja criar uma API REST para gerenciar as informações de receitas, despesas e investimentos.
+
+MongoDB ou PostgreSQL podem ser usados como banco de dados, permitindo a organização eficiente dos dados financeiros.
+
+Com Node.js, você pode utilizar o framework Express para criar as rotas de API que se comunicam com o frontend React, lidando com os dados de usuários, metas, análises e transações.
+
+3. Vantagens de Usar JavaScript, React e Node.js
+Ecossistema único: Usando JavaScript para o frontend (React) e backend (Node.js), você mantém uma linguagem consistente em todo o app, facilitando o desenvolvimento.
+
+Performance: React e Node.js são conhecidos pela sua eficiência e escalabilidade, essenciais para um app que lida com cálculos financeiros e muitas transações.
+
+Comunidade e suporte: Tanto React quanto Node.js têm comunidades grandes e ativas, além de muitas bibliotecas e ferramentas que aceleram o desenvolvimento e adicionam funcionalidades.

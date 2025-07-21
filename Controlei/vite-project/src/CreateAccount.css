@@ -1,0 +1,103 @@
+
+ body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.criar-conta {
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  width: 90%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+
+.senha-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 10px;
+  }
+  
+  .senha-container input {
+    width: 100%;
+    padding: 15px;
+    padding-right: 50px; /* espaço pro botão 👁️ */
+    border: none;
+    font-size: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+
+  .input-style {
+    width: 100%;
+    padding: 12px;
+    padding-right: 50px;
+    border: none;
+    font-size: 14px;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+  
+  .toggle-senha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    z-index: 1;
+  }
+  
+  .fundo-create-account {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .imagem-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .overlay-create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .criar-conta {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 15px;
+      width: 90%;
+    }
+  
+    .senha-container input {
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    .toggle-senha {
+      font-size: 16px;
+    }
+  }
+  
+  
+ 
+  

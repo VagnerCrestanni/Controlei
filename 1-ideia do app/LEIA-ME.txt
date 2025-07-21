@@ -1,0 +1,45 @@
+usar o que aprendi ate agora nas aulas do projeto full stack da hashtag, que é basicamente a parte de front
+o que faltar aprender do front ir buscando na net
+
+em seguida termianr de ver a live 2, 3 e 4 pra aprender a parte de bakc, nou vou usar tudo de la, e tem cisa que ira faltar
+o que faltar vou buscando na net
+
+	Passo a passo para a contrução do app, (para eu entender)
+
+1º passo: tela de login;
+	Preciso de uma imagem de funda, a logo do site e abaixo os campos de usuario, senha, criar conta, ao logar a conta permitir que logue 
+com o e-mail ja existente na maquina.
+	Precisa ter a opção trocar usuario, e entrar (nessa etapa precisa ter a opçao esquecia senha) e mandar no email como trocar a senha
+			Fazer bem parecido com o app kinvo.
+
+2º passo: ao acessar o app a tela inicial ja é a de dashboards;	
+	nessa tela precia ter um grafico com as médias mensais dos ultimos 1, 6 e 12 meses podendo alterar entre elas, tera um grafico com 3 linhas sendo uma de receita, 
+outra de despesas e outra de investimentos, 
+os itens receita, despesas e investimentos alem de suas cores pro grafico tambem serao botoes clicaveis, que ao clicar neles abre expande um grafico para baixo
+com cada investimento especifico em forma de barra, podendo minimizar cada um separadamente, onde posso ter os 3 graficos abertos juntos ou cada um de uma vez. (roteiro de animação esta no chat gpt dia 19/04)
+	abaixo precisa ter 3 quadrados com os valores de receita, despesas, e investimentos, e abaixo de cada um a meta 
+estabelecida para cada, ao clicar em cima aparece a opçao de alterar a meta e inserir o valor e o tempo qeu deseja para
+se cumprir, cada vez em que a meta for cumprida o app envia uma mensagem de parabens quando a pessoa entrar no app, e 
+a caixinha fica com sinal de feito ate a pessoa colocar outra meta, quando nao conseguir aparece um X no canto infeior
+direito e a caixinha fica vermelha. o valor maior sera uma media de valores por ex ( tenho meta de investir 500 reais por 4 meses, a meta aparece menor embaixo e acima 
+fica uma media do periodo de inicio que coloquei a meta ate o final sobre o valor que to investinod, no mes 1 foi 300, mes 2 foi 400, mes 3 foi 700, media de 400 por mes e a meta é 500)
+	abaixo precisa aparecer as ultimas 4 movimentaçoes, seja de receita, despesas ou investimentos.
+		esse item de dashboards tera como principal tela a ft dashboard 2, a parte dos 3 quadros uma mistura da ft dashboard 1 com a parte de metas da ft imagem final
+e a ultima parte sera igual a ft dashboard
+
+3º passo: tela de controle de financias
+
+4º passo: botao superior direito de configuraçoes 
+
+5º passo, tela de hisotico anual :
+Cores do app Controlei (tons de azul, branco, verde e vermelho)
+Título da página: Histórico Anual
+Tabela de anos com total de receitas, despesas e investimentos
+Ao clicar em um ano (ex: 2024), abre detalhamento mês a mês
+Gráfico de barras ao lado ou abaixo com os 3 itens comparativos
+⚠️ Dica de UX:
+Não carregue todos os anos de uma vez → carregue só o mais recente por padrão.
+
+Mostre os anos em ordem decrescente (2025 → 2024 → 2023).
+
+Deixe tudo resumido por padrão e expanda ao clicar.

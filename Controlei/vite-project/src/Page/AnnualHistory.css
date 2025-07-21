@@ -1,0 +1,11 @@
+.AnnualHistory-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .AnnualHistory-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #f4f4f4;
+  }
+
