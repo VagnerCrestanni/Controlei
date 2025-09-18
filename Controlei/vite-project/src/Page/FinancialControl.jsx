@@ -48,16 +48,3 @@ import CardFinancialControl from '../Components/CardFinancialControl';
 };
 
 export default FinancialControl;
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,16 +1,10 @@
-usar o que aprendi ate agora nas aulas do projeto full stack da hashtag, que é basicamente a parte de front
-o que faltar aprender do front ir buscando na net
 
-em seguida termianr de ver a live 2, 3 e 4 pra aprender a parte de bakc, nou vou usar tudo de la, e tem cisa que ira faltar
-o que faltar vou buscando na net
-
-	Passo a passo para a contrução do app, (para eu entender)
+	Passo a passo para a contrução do app
 
 1º passo: tela de login;
 	Preciso de uma imagem de funda, a logo do site e abaixo os campos de usuario, senha, criar conta, ao logar a conta permitir que logue 
 com o e-mail ja existente na maquina.
 	Precisa ter a opção trocar usuario, e entrar (nessa etapa precisa ter a opçao esquecia senha) e mandar no email como trocar a senha
-			Fazer bem parecido com o app kinvo.
 
 2º passo: ao acessar o app a tela inicial ja é a de dashboards;	
 	nessa tela precia ter um grafico com as médias mensais dos ultimos 1, 6 e 12 meses podendo alterar entre elas, tera um grafico com 3 linhas sendo uma de receita, 
@@ -29,17 +23,45 @@ e a ultima parte sera igual a ft dashboard
 
 3º passo: tela de controle de financias
 
-4º passo: botao superior direito de configuraçoes 
+4º passo: botao de configuraçoes 
 
 5º passo, tela de hisotico anual :
-Cores do app Controlei (tons de azul, branco, verde e vermelho)
-Título da página: Histórico Anual
-Tabela de anos com total de receitas, despesas e investimentos
-Ao clicar em um ano (ex: 2024), abre detalhamento mês a mês
-Gráfico de barras ao lado ou abaixo com os 3 itens comparativos
-⚠️ Dica de UX:
-Não carregue todos os anos de uma vez → carregue só o mais recente por padrão.
+Cores do app Controlei 
+	Título da página: Histórico Anual
+	Tabela de anos com total de receitas, despesas e investimentos
+	Ao clicar em um ano (ex: 2024), abre detalhamento mês a mês
+	Gráfico de barras ao lado ou abaixo com os 3 itens comparativos
+	Não carregue todos os anos de uma vez → carregue só o mais recente por padrão.
+	Mostre os anos em ordem decrescente (2025 → 2024 → 2023).
+	Deixe tudo resumido por padrão e expanda ao clicar.
+Estrutura de componentes
+src/
+└── pages/
+    └── HistoricoAnual/
+        ├── HistoricoAnual.jsx
+        ├── TabelaHistorico.jsx
+        ├── GraficoHistorico.jsx
+        └── dadosFake.js
+2. Lógica do Componente (dados simulados)
+	Usar um arquivo dados Fake.jscom dados de exemplo para praticar antes do backend:
 
-Mostre os anos em ordem decrescente (2025 → 2024 → 2023).
+3. Criar componente principalHistoricoAnual.jsx
+	Esse componente irá:
+Gerenciar um ano selecionado ( useState)
+	Passar os dados para os outros componentes
 
-Deixe tudo resumido por padrão e expanda ao clicar.
+4. Tabela histórica ( TabelaHistorico.jsx)
+	Monte a tabela mês a mês, usando os dados obtidos por props:
+
+ 5. Gráfico com Recharts( GraficoHistorico.jsx)
+Instalar uma biblioteca:
+	npm install recharts
+
+			
+ 		 );
+		}
+6. Dicas para desenvolver com clareza
+	Estudo useState, propse manipulação de arrays ( map, reduce)
+	Sempre inicie com dados estáticos , depois troque pelo backend
+	Use console.logpara testar os dados que chegam nos componentes
+	Use a documentação do Recharts para personalizar o gráfico

@@ -23,6 +23,13 @@
     width: 300px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
+
+  .card-dashboard input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+  }
   
   .card h2 {
     font-size: 24px;
@@ -43,3 +50,28 @@
     cursor: pointer;
   }
   
+  @media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .card-dashboard {
+    width: 100%;
+    max-width: 95%;
+  }
+
+  .card-dashboard input {
+    width: 100%;
+  }
+}

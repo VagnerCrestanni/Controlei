@@ -11,7 +11,6 @@ Sistema de metas por aba							Cadastro e acompanhamento mensal
 Separação por meses								Cada mês visível em campo separado para comparação
 Design responsivo								Mobile e desktop com visual simples
 Tela inicial = Dashboard							Mostrar resumo logo na abertura
-📆 Tempo estimado: 3 a 4 semanas
 
 🧭 Lista: Versão 2.0 – Usabilidade e automações básicas
 Melhorar a experiência do usuário e reduzir trabalho manual
@@ -24,7 +23,6 @@ Barra de progresso das metas							Visual para acompanhar avanço mensal
 Categorias personalizáveis							Criar/editar/remover categorias de gastos/investimentos
 Filtros e busca									Por tipo, valor, data, forma de pagamento
 Modo escuro									Para conforto visual
-📆 Tempo estimado: 2 a 3 semanas
 
 🌟 Lista: Versão 3.0 – Compartilhamento e mobilidade
 Ampliar o app para uso conjunto e exportação de dados
@@ -35,7 +33,6 @@ Exportação de dados								PDF, Excel ou CSV
 Uso offline + sync automático							Funcional sem internet e sincroniza depois
 Widget (celular)								Mostrar resumo do mês na tela inicial
 Dicas financeiras simples							Ex: como poupar em supermercado
-📆 Tempo estimado: 2 semanas
 
 🧠 Lista: Versão 4.0 – Inteligência e integrações
 Automatização e inteligência no uso
@@ -45,4 +42,3 @@ Sugestões baseadas no histórico							Ex: "Você gasta mais em março. Atenç�
 Reconhecimento de voz								Para lançar receitas/despesas
 Integração com bancos/Pix (opcional)						Automatizar registros com autorização
 Leitura de comprovantes (OCR)							Lê valores de notas fiscais e comprovantes
-📆 Tempo estimado: 3 a 4 semanas

@@ -8,6 +8,10 @@ import FinancialControl from './Page/FinancialControl';
 import AnnualHistory from './Page/AnnualHistory';
 import FinanceProvider from './Components/FinanceProvider';
 
+import ObjectKeysExerc1 from './treinosLogica/ObjectKeysExerc1';
+import ObjectEntriesExerc1 from './treinosLogica/ObjectEntriesExerc1';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -21,6 +25,10 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/financialControl" element={<FinancialControl />} />
           <Route path="/annualHistory" element={<AnnualHistory />} />
+
+          {/* Rotas para treinos */}
+          <Route path='Treino1' element={<ObjectKeysExerc1 />} />
+          <Route path='Treino2' element={<ObjectEntriesExerc1 />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,7 +2,7 @@
 1. 🏗️ Estrutura Base do Projeto
 Objetivo: Configurar o ambiente e ferramentas de desenvolvimento
 
-	Configurar ambiente React (Next.js recomendado) e Node.js (Express)
+	Configurar ambiente React (Next.js) e Node.js (Express)
 
 	Configurar TailwindCSS para estilização
 

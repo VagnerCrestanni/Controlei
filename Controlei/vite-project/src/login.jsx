@@ -40,15 +40,22 @@ const Login = () => {
         <br />
 
         <input
-          type="email"  placeholder="Email"  className="input-style" 
-          value={email} onChange={(e) => setEmail(e.target.value)}
+          type="email"  
+          placeholder="Email"  
+          className="input-style" 
+          value={email} 
+          onChange={(e) => 
+          setEmail(e.target.value)}
         />
         <br />
 
         <div className="senha-container">
         <input
-          type={showPassword?"text" : "password"}  placeholder="Senha" 
-          className="input-style"  value={password} onChange={(e) => setPassword(e.target.value)}
+          type={showPassword?"text" : "password"}  
+          placeholder="Senha" 
+          className="input-style" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)}
         />
         <br />
   
