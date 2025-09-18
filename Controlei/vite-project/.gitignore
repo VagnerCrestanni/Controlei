@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+.vite/
+coverage/
+
+# Pasta local que não deve ir pro GitHub
+vite-project/src/treinosLogica/
