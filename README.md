@@ -1,89 +1,128 @@
+
 # 💸 Controlei - App de Controle Financeiro
 
-📅 Status do projeto
-🚧 Em construção:
-O projeto está em fase inicial e será atualizado com novos recursos nas próximas semanas. Acompanhe os commits e atualizações futuras!
+<p align="center">
+  Um aplicativo de gestão financeira para ajudar você a ter controle total sobre sua renda, despesas e investimentos.
+</p>
 
-## 🧠 Sobre o projeto
+---
 
-**Controlei** é um aplicativo de controle financeiro pessoal e familiar, com o objetivo de tornar a gestão de receitas, despesas e investimentos mais prática, visual e acessível.  
-Voltado para usuários iniciantes e intermediários, o app permite:
+## 📅 Status do Projeto
 
-- Inserir entradas financeiras separadas por pessoa
-- Visualizar dashboards com totais por categoria (Receitas, Despesas, Investimentos)
-- Acompanhar metas mensais com alerta visual e com gráficos
-- Ver análises financeiras mensais e anuais
-- Interface simples e intuitiva, adaptável para desktop e mobile
+<div align="center">
+  
+![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-blue)
 
-## 🛠 Tecnologias utilizadas
+</div>
 
-O projeto está sendo desenvolvido com as seguintes tecnologias e ferramentas:
+O projeto está em fase de desenvolvimento contínuo e será atualizado com novos recursos nas próximas semanas. Acompanhe os commits e as novas funcionalidades!
 
-- ⚛️ **React.js** — Biblioteca para criação da interface
-- 🧠 **Hooks (useState, useEffect)** — Controle de estado e efeitos colaterais
-- 🌐 **JavaScript (ES6+)** — Lógica e manipulação dos dados
-- 🎨 **CSS / Tailwind** — Estilização da interface (futuramente)
-- 🐙 **Git & GitHub** — Controle de versão e colaboração
-- 📁 **Vite** — Ambiente de desenvolvimento rápido (React + JS)
+---
 
-## 📦 Como executar o projeto
+## 🧠 Sobre o Projeto
 
-> Siga os passos abaixo para rodar o Controlei localmente em seu computador:
+**Controlei** é um aplicativo de controle financeiro pessoal e familiar, com o objetivo de tornar a gestão do seu dinheiro mais prática, visual e acessível.
 
-1. **Clone o repositório:**
-git clone https://github.com/seu-usuario/controlei.git
+O app é ideal para usuários iniciantes e intermediários que desejam um controle total sobre suas finanças. Ele permite:
 
-- Acesse a pasta do projeto:
-cd controlei
+* **Rastreamento financeiro:** Acompanhe sua renda, despesas e investimentos com metas, gráficos e valores separados por categoria, para uma visão clara de suas finanças mensais.
+* **Registro fácil:** Insira valores de renda, despesas e investimentos, com a opção de registrar a pessoa, a entidade e a data da transação.
+* **Análises completas:** Visualize análises financeiras mensais, semestrais e anuais para entender seus hábitos de consumo.
+* **Histórico detalhado:** Acesse todo o seu histórico financeiro desde o primeiro registro.
+* **Design intuitivo:** Uma interface simples e limpa, adaptável para **desktop e mobile**.
 
-- Instalar as dependências:
-npm install
+---
 
--Iniciar o servidor de desenvolvimento:
-npm run dev
+## 🛠 Tecnologias Utilizadas
 
--Abra no navegador:
-http://localhost:5173
+O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferramentas:
 
+* **Frontend:**
+    * **React.js**: Biblioteca para construção da interface de usuário.
+    * **JavaScript (ES6+)**: Lógica e manipulação dos dados.
+    * **CSS / Tailwind**: Estilização e design responsivo.
+    * **Vite**: Ambiente de desenvolvimento rápido.
 
-## 🧪 Funcionalidades já criadas
+* **Backend:**
+    * **Node.js**: Ambiente de execução para o servidor.
+    * **Docker**: Para conteinerização e padronização do ambiente.
 
-Adição de receitas, despesas e investimentos separados por pessoa
+* **Outras Ferramentas:**
+    * **Git & GitHub**: Controle de versão e colaboração.
 
-Exibição dos valores em tempo real no dashboard
+---
 
-função de adicionar receitas, despesas e investimentos, com as opções de adicionar quem fez, qual instituição, valor e data.
+## 📦 Como Executar o Projeto
 
-Estrutura de componentes reutilizáveis com.map()
+Siga os passos abaixo para rodar o **Controlei** localmente em sua máquina.
 
+1.  **Clone o repositório:**
+    ```bash
+    git clone [(https://github.com/VagnerCrestanni/Controlei.git)]
+    ```
 
-## 🤝 Como contribuir
+2.  **Acesse a pasta do projeto:**
+    ```bash
+    cd controlei
+    ```
 
-Contribuições são bem-vindas! Se você deseja melhorar alguma funcionalidade, corrigir bugs ou sugerir algo novo, siga os passos abaixo:
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
 
-Faça um garfo do projeto
+4.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
 
-Crie uma nova branch:
-git checkout -b minha-melhoria
+5.  **Acesse no navegador:**
+    O aplicativo estará disponível em `http://localhost:5173`.
 
-Faça suas alterações e confirme:
-git commit -m "Melhoria: adiciona nova funcionalidade"
+---
 
-Envie para seu garfo:
-git push origin minha-melhoria
+## ✅ Funcionalidades Atuais
 
-Abra um Pull Request
+As seguintes funcionalidades já estão implementadas e totalmente estilizadas para desktop e mobile:
 
+* **Registro de Transações:** Adicionar rendas, despesas e investimentos, com campos para valor, data, entidade e pessoa responsável.
+* **Dashboard em Tempo Real:** Visualização dinâmica dos valores no dashboard principal.
+* **Definição de Metas:** Adicionar metas de renda, despesa e investimento, com datas de expiração personalizáveis.
+* **Histórico Financeiro:** Análise completa do histórico financeiro, com visualização anual e detalhamento mensal.
+
+---
+
+## 🤝 Como Contribuir
+
+Contribuições são muito bem-vindas! Se você deseja ajudar a melhorar o projeto, corrigir bugs ou sugerir novas funcionalidades, siga o fluxo de contribuição padrão:
+
+1.  Faça um **fork** do projeto.
+2.  Crie uma nova branch para sua feature:
+    ```bash
+    git checkout -b minha-melhoria
+    ```
+3.  Faça suas alterações e adicione-as ao staging:
+    ```bash
+    git add .
+    ```
+4.  Faça o **commit** com uma mensagem descritiva:
+    ```bash
+    git commit -m "feat: adiciona nova funcionalidade"
+    ```
+5.  Envie suas alterações para o seu fork:
+    ```bash
+    git push origin minha-melhoria
+    ```
+6.  Abra um **Pull Request** para a branch `main` do projeto original.
+
+---
 
 ## 📫 Contato
 
-Caso queira saber mais ou trocar ideias:
+* **E-mail:** [vagnerdcrestanni@gmail.com](mailto:vagnerdcrestanni@gmail.com)
+* **LinkedIn:** [linkedin.com/in/vagner-crestanni](https://www.linkedin.com/in/vagner-crestanni-331a87309/)
+* **Telefone:** +55 46 98803-3230
 
-📧 [e-mail](vagnerdcrestanni@gmail.com)
+Feito com ❤️ por **Vagner Crestanni** - Engenheiro de Software em formação.
 
-💼 [LinkedIn](https://www.linkedin.com/in/vagner-crestanni-331a87309/)
-
-  [telefone](46988033230) 
-
-Feito com ❤️ por Vagner Crestanni - Engenheiro de Software em formação
 
