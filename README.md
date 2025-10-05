@@ -88,7 +88,7 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 * **Registro de Transações:** Adicionar rendas, despesas e investimentos, com campos para valor, data, entidade e pessoa responsável.
 * **Dashboard em Tempo Real:** Visualização dinâmica dos valores no dashboard principal.
 * **Definição de Metas:** Adicionar metas de renda, despesa e investimento, com datas de expiração personalizáveis.
-* **Histórico Financeiro:** Análise completa do histórico financeiro, com visualização anual e detalhamento mensal.
+* **Histórico Financeiro:** Análise completa do histórico financeiro, com visualização anual e detalhamento mensal com gráfico completo.
 
 ---
 

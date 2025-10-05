@@ -1,15 +1,17 @@
 .AnnualHistory-container {
     display: flex;
     height: 100vh;
+    overflow: hidden;
 }
 
 .AnnualHistory-content {
-    flex: 1;
-    padding: 2.5rem; /* Aumenta o espaçamento interno */
-    background-color: #f4f7f9; /* Cor de fundo mais suave */
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden; 
+    padding: 2.5rem;
+    background-color: #f4f7f9; 
 }
 
-/* Estilo do cabeçalho */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -18,8 +20,8 @@
 }
 
 h1 {
-    font-size: 1.5rem; /* Tamanho da fonte do título */
-    font-weight: 600; /* Peso da fonte */
+    font-size: 1.5rem; 
+    font-weight: 600; 
     color: #333;
 }
 
@@ -31,7 +33,6 @@ h1 {
     cursor: pointer;
 }
 
-/* Estilo da Tabela */
 .table-container {
     background-color: #fff;
     border-radius: 0.5rem;
@@ -40,14 +41,14 @@ h1 {
 }
 
 table {
-    width: 100%; /* A tabela ocupa 100% da largura do contêiner */
+    width: 100%; 
     border-collapse: collapse;
-    font-size: 0.875rem; /* Tamanho da fonte menor */
+    font-size: 0.875rem; 
     color: #555;
 }
 
 .table-header-row {
-    background-color: #f8f9fa; /* Cor de fundo do cabeçalho */
+    background-color: #f8f9fa; 
     font-weight: 600;
     color: #333;
     text-align: left;
@@ -71,7 +72,7 @@ table {
 
 .year-row td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #f0f0f0; /* Linha de separação */
+    border-bottom: 1px solid #f0f0f0; 
 }
 
 .month-row {
@@ -95,16 +96,34 @@ table {
 
 .year-cell {
     font-weight: 700;
-    color: #007bff; /* Cor para destacar o ano */
+    color: #007bff; 
 }
 
 @media (max-width: 768px) {
     .AnnualHistory-container  {
          flex-direction: column;
          align-items: center;
+         height: auto; 
     }
 
     .AnnualHistory-content {
-        padding: 20px;
+        padding: 10px;
+        width: 100%;
+        min-width: 0;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    .HistoricalGraph-container {
+        min-width: 400px;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        max-height: none;
     }
 }

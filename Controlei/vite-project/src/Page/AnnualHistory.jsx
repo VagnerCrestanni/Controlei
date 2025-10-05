@@ -7,18 +7,19 @@ import HistoricalGraph from '../Components/HistoricalGraph';
 import { data } from 'react-router-dom';
 
 const AnnualHistory = () => {
-  const [openYears, setOpenYears] = useState([
-    
-  ])
   
+  const [activeYear, setActiveYear] = useState(
+  Object.keys(AnnualData).sort((a, b) => b - a)[0]
+  );
+
   const toggleYear = (year) => {
-    setOpenYears(prev =>
-      prev.includes(year) ? prev.filter(a => a !== year) : [...prev, year]
-    );
+    setActiveYear(prevYear => prevYear === year ? null : year);
   };
 
    const format = (value) =>
     value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+   const dataForGraph = activeYear ? AnnualData[activeYear].months : {};
 
   return (
     <div className="AnnualHistory-container">
@@ -49,7 +50,7 @@ const AnnualHistory = () => {
                       <td>{format(AnnualData[year].total.Expenses)}</td>
                       <td>{format(AnnualData[year].total.Investments)}</td>
                     </tr>
-                    {openYears.includes(year) &&
+                    {activeYear === year &&
                       Object.entries(AnnualData[year].months).map(([month, dataMonth]) => (
                         <tr key={`${year}-${month}`} className="month-row">
                           <td className="month-cell">{month}</td>
@@ -63,7 +64,7 @@ const AnnualHistory = () => {
             </tbody>
           </table>
         </div>
-        <HistoricalGraph />
+        <HistoricalGraph monthlyData={dataForGraph} activeYear={activeYear} />
       </main>
     </div>
   );
