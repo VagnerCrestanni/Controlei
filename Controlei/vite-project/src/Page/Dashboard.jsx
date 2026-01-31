@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import React, { use, useState } from 'react';
+import { data, useOutletContext } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
+import AnnualData from '../Components/FakeData'
+import '../Components/DashboardGraph'
+import { getLastMonthsData } from '../Components/chartUtils';
 import './Dashboard.css';
 import CardDashboard from '../Components/CardDashboard';
+import DashboardGraph from '../Components/DashboardGraph';
 
 const Dashboard = () => {
+  const [ period, setPeriod ] = useState (1);
+  const [activeYear, setActiveYear] = useState ('2025')
+  const chartData = getLastMonthsData(AnnualData, period) 
+
   const { income = [], expenses = [], investments = [] } = useOutletContext();
   
   const [goalIncome, setGoalIncome] = useState ([]);
@@ -20,6 +28,17 @@ const Dashboard = () => {
       <Sidebar />
       <main className="dashboard-content">
         <h1>Dashboard</h1>
+        <p> Médias </p>
+        <div className="period-buttons">
+          <button onClick={() => setPeriod(3)}> 3 Meses</button>
+          <button onClick={() => setPeriod(6)}> 6 Meses </button>
+          <button onClick={() => setPeriod(12)}> 12 Meses </button>
+        </div>
+
+        <div>
+          <DashboardGraph dataForGraph ={chartData} period={period} />
+        </div>
+
         <div className="cards-container">
           <CardDashboard 
           title="Receitas" value={`R$ ${totalIncome.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
@@ -34,6 +53,7 @@ const Dashboard = () => {
           createGoal={goalInvestments} onAddGoal={(newGoal) => setGoalInvestments([...goalInvestments, newGoal])}
           />
         </div>
+         
       </main>
     </div>
   );

@@ -4,7 +4,6 @@ import AnnualData from '../Components/FakeData'
 import '../Components/HistoricalGraph'
 import "./AnnualHistory.css"
 import HistoricalGraph from '../Components/HistoricalGraph';
-import { data } from 'react-router-dom';
 
 const AnnualHistory = () => {
   
@@ -19,7 +18,14 @@ const AnnualHistory = () => {
    const format = (value) =>
     value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-   const dataForGraph = activeYear ? AnnualData[activeYear].months : {};
+   const dataForGraph = activeYear
+    ? Object.entries(AnnualData[activeYear].months).map(([month, dataMonth]) => ({
+        label: month,
+        Receita: dataMonth.Income,      
+        Despesa: dataMonth.Expenses,    
+        Investimento: dataMonth.Investments, 
+      }))
+    : [];
 
   return (
     <div className="AnnualHistory-container">
