@@ -1,12 +1,25 @@
+.period-buttons button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
 .dashboard-container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
   }
   
   .dashboard-content {
     flex: 1;
     padding: 30px;
     background-color: #f4f4f4;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .cards-container {
@@ -51,27 +64,74 @@
   }
   
   @media (max-width: 768px) {
+  .chart-container { 
+    display: block !important;
+    width: 100% !important;
+    background-color: white !important;
+    padding: 20px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    margin-bottom: 20px !important; 
+    margin-top: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .chart-container canvas {
+    height: 250px !important; 
+    width: 100% !important;
+  }
+
+  .card-chart-container { 
+    width: 100%; 
+    min-height: 300px; 
+    margin-bottom: 0; 
+  }
+
+  .card-chart-container canvas {
+    width: 100% !important; 
+    height: 300px !important; 
+  }
+
   .dashboard-container {
     flex-direction: column;
-    align-items: center;
   }
 
   .dashboard-content {
-    padding: 20px;
+    background-color: #f8fafc;
+    padding: 15px;
   }
 
   .cards-container {
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
     width: 100%;
+    box-sizing: border-box;
+    margin-right: 0;
+    margin-top: 15px;
   }
+
+  .period-buttons {
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 10px;
+    }
+
+  .period-buttons button {
+        flex: 1 1 auto; 
+        margin-right: 0;
+        min-width: 100px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
 
   .card-dashboard {
     width: 100%;
     max-width: 95%;
+    margin: 10px auto;
+    box-sizing: border-box;
   }
 
   .card-dashboard input {
     width: 100%;
+    box-sizing: border-box;
   }
 }

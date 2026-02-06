@@ -35,7 +35,7 @@ const Dashboard = () => {
           <button onClick={() => setPeriod(12)}> 12 Meses </button>
         </div>
 
-        <div>
+        <div className='chart-container'>
           <DashboardGraph dataForGraph ={chartData} period={period} />
         </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateAccount.css';
-
+import { FiEyeOff, FiEye  } from "react-icons/fi";
 
 const CreatAccount = () => {
   const [nome, setNome] = useState('');
@@ -59,7 +59,7 @@ const CreatAccount = () => {
         <span
           className='toggle-senha' onClick={() => setMostrarSenha(!mostrarSenha)}
         >
-          {mostrarSenha ? '🙈' : '👁️'}
+          {mostrarSenha ? <FiEye /> : <FiEyeOff />}
         </span>
       </div>
   
@@ -73,7 +73,7 @@ const CreatAccount = () => {
           className='toggle-senha'
           onClick={() => setMostrarConfirmacao(!mostrarConfirmacao)}
         >
-          {mostrarConfirmacao ? '🙈' : '👁️'}
+          {mostrarConfirmacao ? <FiEye /> : <FiEyeOff />}
         </span>
       </div>
 

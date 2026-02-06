@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateAccount.css';
-
+import { FiEyeOff, FiEye  } from "react-icons/fi";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -61,7 +61,7 @@ const ForgotPassword = () => {
             className='toggle-senha'
             onClick={()=> setMostrarNovaSenha(!mostrarNovaSenha)}
             >
-                {mostrarNovaSenha ? '🙈' : '👁️'}
+                {mostrarNovaSenha ? <FiEye /> : <FiEyeOff />}
                 </span> 
       </div>
 
@@ -76,7 +76,7 @@ const ForgotPassword = () => {
           className="toggle-senha"
           onClick={() => setMostrarConfirmacao(!mostrarConfirmacao)}
         >
-          {mostrarConfirmacao ? '🙈' : '👁️'}
+          {mostrarConfirmacao ? <FiEye /> : <FiEyeOff />}
         </span>
       </div>
 

@@ -21,9 +21,10 @@ const dashData = {
 
 const dashOptions = {
   responsive: true,
+
   plugins: {
     legend: {
-      position: 'top', //depois fazer bottom e left para ver a diferença
+      position: 'top',
     },
     title: {
       display: true,
@@ -49,7 +50,7 @@ const dashOptions = {
 
   return (
     <div className="DashboardGraph-container"
-    style={{ position: 'relative', height: '40vh', width: '100%' }}>
+    style={{ position: 'relative', height: '45vh', width: '100%', }}>
       <Line data={dashData} options={dashOptions}/>
     </div>
   )

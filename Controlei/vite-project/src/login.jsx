@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { FiEyeOff, FiEye  } from "react-icons/fi";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -62,7 +63,7 @@ const Login = () => {
         <span
         className="toggle-senha" onClick={() => setShowPassword(!showPassword)}
          >
-            {showPassword ? '🙈' : '👁️'}
+            {showPassword ? <FiEye /> : <FiEyeOff />}
         </span>
         </div>
 

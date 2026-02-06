@@ -21,14 +21,13 @@
 .senha-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
     margin-bottom: 10px;
   }
   
   .senha-container input {
     width: 100%;
     padding: 15px;
-    padding-right: 50px; /* espaço pro botão 👁️ */
+    padding-right: 50px;
     border: none;
     font-size: 15px;
     border-radius: 20px;

@@ -63,13 +63,13 @@ a {
 
 .senha-container {
     position: relative;
-    width: 465px;
+    width: 100%;
     margin-bottom: 10px;
   }
   
   .senha-container input {
     width: 100%;
-    padding-right: 50px; /* espaço para o botão à direita */
+    padding-right: 50px; 
   }
   
   .toggle-senha {
@@ -103,7 +103,7 @@ a {
     height: 100%;
   }
   
-  /* Estilos para telas menores */
+  /* Estilos para celulares */
   @media screen and (max-width: 600px) {
     .login {
       width: 90%;
