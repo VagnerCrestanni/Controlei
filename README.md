@@ -11,17 +11,18 @@
 
 <div align="center">
   
-![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-blue)
+![Status](https://img.shields.io/badge/status-MVP%20funcional%20em%20evolu%C3%A7%C3%A3o-green)
 
 </div>
 
 O projeto está em fase de desenvolvimento contínuo e será atualizado com novos recursos nas próximas semanas. Acompanhe os commits e as novas funcionalidades!
+* **Acesse o projeto online:** [controlei-sigma.vercel.app/](https://controlei-sigma.vercel.app/)
 
 ---
 
 ## 🧠 Sobre o Projeto
 
-**Controlei** é um aplicativo de controle financeiro pessoal e familiar, com o objetivo de tornar a gestão do seu dinheiro mais prática, visual e acessível.
+**Controlei** surgiu a partir da dificuldade de muitas pessoas em visualizar para onde o dinheiro está indo ao longo dos meses. O Controlei surgiu para transformar dados financeiros em informações claras e visuais, facilitando decisões financeiras no dia a dia.
 
 O app é ideal para usuários iniciantes e intermediários que desejam um controle total sobre suas finanças. Ele permite:
 
@@ -43,7 +44,7 @@ O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferr
     * **CSS / Tailwind**: Estilização e design responsivo.
     * **Vite**: Ambiente de desenvolvimento rápido.
 
-* **Backend:**
+* **Backend (em planejamento):**
     * **Node.js**: Ambiente de execução para o servidor.
     * **Docker**: Para conteinerização e padronização do ambiente.
 
@@ -52,9 +53,34 @@ O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferr
 
 ---
 
+## 🧩 Principais Desafios Técnicos
+
+Durante o desenvolvimento do **Controlei**, alguns desafios técnicos importantes foram enfrentados, contribuindo diretamente para meu aprendizado prático:
+
+* **Organização e reutilização de dados financeiros:** Estruturação de dados fictícios e dinâmicos para suportar visualizações mensais, semestrais e anuais.
+* **Separação de responsabilidades:** Divisão clara entre componentes responsáveis pela lógica (ex: `Dashboard.jsx`) e componentes responsáveis apenas pela visualização dos dados (ex: `DashboardGraph.jsx`).
+* **Manipulação de estruturas complexas em JavaScript:** Uso intensivo de `Object.keys`, `Object.entries`, `map`, `reduce`, `flatMap` e filtros por período.
+* **Gráficos dinâmicos e interativos:** Implementação de gráficos de linha que se adaptam aos períodos selecionados (3, 6 e 12 meses).
+* **Preparação para backend:** Organização do código pensando na futura integração com banco de dados e backend em Node.js, evitando acoplamento excessivo entre lógica e interface.
+ **Arquitetura pensada para evolução:** O projeto foi estruturado para facilitar a futura integração com backend e banco de dados, mantendo a lógica de cálculo desacoplada da interface.
+
+---
+
+## 📚 Principais Aprendizados
+
+O desenvolvimento deste projeto proporcionou aprendizados importantes, especialmente para minha evolução como desenvolvedor:
+
+* Organização e gerenciamento de **estados complexos** no React.
+* Desenvolvimento do **pensamento lógico** para transformar dados financeiros em informações visuais claras.
+* Aplicação de **boas práticas de componentização** e reutilização de código.
+* Estruturação de um projeto real **do zero até uma versão funcional**, lidando com dificuldades reais do processo.
+* Maior compreensão sobre como planejar funcionalidades pensando na **escalabilidade futura** da aplicação.
+
+---
+
 ## 📦 Como Executar o Projeto
 
-Siga os passos abaixo para rodar o **Controlei** localmente em sua máquina.
+Se você deseja explorar o código ou rodar em sua máquina, siga os passos abaixo:
 
 1.  **Clone o repositório:**
     ```bash
@@ -63,7 +89,7 @@ Siga os passos abaixo para rodar o **Controlei** localmente em sua máquina.
 
 2.  **Acesse a pasta do projeto:**
     ```bash
-    cd controlei
+    cd Controlei/Controlei/vite-project
     ```
 
 3.  **Instale as dependências:**
@@ -87,8 +113,35 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 
 * **Registro de Transações:** Adicionar rendas, despesas e investimentos, com campos para valor, data, entidade e pessoa responsável.
 * **Dashboard em Tempo Real:** Visualização dinâmica dos valores no dashboard principal.
+* **Gráfico de Dashboard:** Gráfico de linha interativo para acompahar seu dinheiro nos ultimos 3, 6 e 12 meses.
 * **Definição de Metas:** Adicionar metas de renda, despesa e investimento, com datas de expiração personalizáveis.
 * **Histórico Financeiro:** Análise completa do histórico financeiro, com visualização anual e detalhamento mensal com gráfico completo.
+
+---
+
+## 🛣️ Roadmap de Evolução
+
+As próximas etapas do projeto estão planejadas para transformar o **Controlei** em uma aplicação completa com backend e persistência de dados:
+
+### 🔹 Backend
+* Criação de API REST com **Node.js**
+* Estruturação de rotas para receitas, despesas, investimentos e metas
+* Separação de camadas (controllers, services e repositories)
+
+### 🔹 Autenticação
+* Sistema de login e cadastro de usuários
+* Autenticação via **JWT**
+* Proteção de rotas privadas
+
+### 🔹 Banco de Dados
+* Persistência de dados em banco relacional (PostgreSQL)
+* Modelagem das entidades financeiras
+* Integração com ORM
+
+### 🔹 Evoluções Futuras
+* Relatórios mais avançados
+* Comparação entre períodos
+* Exportação de dados
 
 ---
 
