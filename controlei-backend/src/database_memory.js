@@ -6,6 +6,7 @@ export class DatabaseMemory {
     create(transaction) {                                           //cria uma transação com id unico
         const newTransaction = { ...transaction, id: randomUUID() };
            this.#transactions.push(newTransaction);
+           return newTransaction;
     }
 
     list() {

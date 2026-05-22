@@ -1,0 +1,35 @@
+POST http://localhost:3333/transactions
+Content-Type: application/json
+
+{
+    "title": "luz",
+    "value": 500,
+    "date": "2024-06-01",
+    "type": "expense"
+}
+
+###
+
+POST http://localhost:3333/transactions
+Content-Type: application/json
+
+{
+    "title": "Aluguel",
+    "value": 1200,
+    "date": "2024-06-01",
+    "type": "expense"
+}
+
+###
+
+GET http://localhost:3333/transactions
+Content-Type: application/json
+
+###
+
+GET http://localhost:3333/transactions/summary
+Content-Type: application/json
+
+
+
+

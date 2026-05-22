@@ -1,10 +1,4 @@
-//uso para definir as rotas GET, POST, PUT, DELETE 
-const express = require('express');
-const router = express.Router();
-
-const userController = require('./controllers/userController');
-const transactionController = require('./controllers/transactionController');
-const categoryController = require('./controllers/categoryController');
+import { createTransaction, listTransactions, summaryTransactions } from './service.js';
 
 /*rotas para usuários
 router.post('/users', userController.createUser);
@@ -25,4 +19,19 @@ export async function transactionRoutes(app) {
          // 3. ENTREGA - devolve uma resposta pro frontend
          return reply.status(201).send(newTransaction)
     })
+
+    app.get('/transactions', async (request, reply) => {
+        // 1. PREPARA - chama a função que sabe como listar
+        const transactions = listTransactions()
+
+        return reply.send(transactions)
+    })
+
+    app.get('/transactions/summary', async (request, reply) => {
+        // 1. PREPARA - chama a função que sabe como listar
+        const summary = summaryTransactions()
+
+        return reply.send(summary)
+    })
+    
 }
