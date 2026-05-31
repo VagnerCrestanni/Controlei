@@ -14,7 +14,7 @@ export async function transactionRoutes(app) {
         const { who, company, value, date, type } = request.body
 
          // 2. PREPARA - chama a função que sabe como salvar
-         const newTransaction = createTransaction({ who, company, value, date, type })
+         const newTransaction = await createTransaction({ who, company, value, date, type })
 
          // 3. ENTREGA - devolve uma resposta pro frontend
          return reply.status(201).send(newTransaction)
@@ -22,14 +22,14 @@ export async function transactionRoutes(app) {
 
     app.get('/transactions', async (request, reply) => {
         // 1. PREPARA - chama a função que sabe como listar
-        const transactions = listTransactions()
+        const transactions = await listTransactions()
 
         return reply.send(transactions)
     })
 
     app.get('/transactions/summary', async (request, reply) => {
         // 1. PREPARA - chama a função que sabe como listar
-        const summary = summaryTransactions()
+        const summary = await summaryTransactions()
 
         return reply.send(summary)
     })

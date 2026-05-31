@@ -1,33 +1,32 @@
-import { randomUUID } from 'crypto';
-import { DatabaseMemory } from './database_memory.js';
+import { prisma } from './prisma.js';
 
-const db = new DatabaseMemory()
-
-export function createTransaction(transaction) {  
+export async function createTransaction(transaction) {  
     
-    const newTransaction = { //cria uma nova transação
-        id: randomUUID(),
-        who: transaction.who,
-        company: transaction.company,
-        value: transaction.value,
-        date: transaction.date,
-        type: transaction.type,
-    } 
-    db.create(newTransaction)
+    const newTransaction = await prisma.transaction.create ({ //cria uma nova transação
+        data : {  
+            who: transaction.who,
+            company: transaction.company,
+            value: transaction.value,
+            date: transaction.date,
+            type: transaction.type,
+         }
+    })
 
     return newTransaction;
 }
 
-export function listTransactions() {
+export async function listTransactions() { //lista as transações
 
-    const transactions = db.list() //chama a função list da classe DatabaseMemory para listar as transações
+    const transaction = await prisma.transaction.findMany()
 
-    return transactions;
+    return transaction;
 }
 
-export function summaryTransactions() {
+export async function summaryTransactions() {
 
-    const summary = db.list().reduce((acc, transaction) => { //summary é onde soma cada 'type' e mostra o valor total de cada um
+    const transaction = await prisma.transaction.findMany()
+
+    const summary = transaction.reduce((acc, transaction) => { //summary é onde soma cada 'type' e mostra o valor total de cada um
        if (transaction.type === 'income') {
         acc.income += transaction.value
 
