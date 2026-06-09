@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "who": "Lovane",
     "company": "Mercado",
-    "value": 1200,
+    "value": mil,
     "date": "2026-06-01T00:00:00.000Z",
     "type": "expense"
 }

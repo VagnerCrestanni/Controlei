@@ -46,7 +46,8 @@ O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferr
 
 * **Backend (em planejamento):**
     * **Node.js**: Ambiente de execução para o servidor.
-    * **Docker**: Para conteinerização e padronização do ambiente.
+    * **Fastfy**: Framework web para a criação das rotas e da API.
+    * **PostgreSQL**: Banco de dados relacional para o armazenamento dos dados.
 
 * **Outras Ferramentas:**
     * **Git & GitHub**: Controle de versão e colaboração.
@@ -75,6 +76,8 @@ O desenvolvimento deste projeto proporcionou aprendizados importantes, especialm
 * Aplicação de **boas práticas de componentização** e reutilização de código.
 * Estruturação de um projeto real **do zero até uma versão funcional**, lidando com dificuldades reais do processo.
 * Maior compreensão sobre como planejar funcionalidades pensando na **escalabilidade futura** da aplicação.
+* Estruturação de uma **API organizada e funcional** em Node.js para conectar o front-end ao banco de dados.
+* Implementação de **validação de dados robusta com Zod** para garantir a segurança e integridade das requisições.
 
 ---
 
