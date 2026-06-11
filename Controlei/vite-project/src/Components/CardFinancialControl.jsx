@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
+import { createTransaction } from '../services/api';
 
-const CardFinancialControl = ({ title, description, transactions, toAdd }) => {
+const CardFinancialControl = ({ title, description, transactions }) => {
   const [showForm, setShowForm] = useState (false);
   const [who, setWho] = useState ('');
   const [company, setCompany] = useState ('');
   const [value, setValue] = useState('');
   const [date, setDate] = useState('');
 
-  const lidarEnvio = (e) => {
+  const lidarEnvio = async (e) => {
     e.preventDefault();
+    //Mapeamento dos tipos de transação para o formato esperado pela API
+    const typeMapper = {
+      'Renda': 'income',
+      'Despesas': 'expense',
+      'Investimentos': 'investment'
+    }
+ 
     if (!who || !company || !value || !date) return;
 
-    toAdd({ who, company, value, date });
+    const dateISO = new Date(date).toISOString(); // Converter a data para o formato ISO 8601
+
+    const transactionType = typeMapper[title] || 'unknown';
+    const newTransaction = { // Mapear os campos do formulário para os campos esperados pela API
+      who, 
+      company, 
+      value: parseFloat(value),
+      date: dateISO,
+      type: transactionType };
+
+    await createTransaction(newTransaction);
     setWho('');
     setCompany('');
     setValue('');

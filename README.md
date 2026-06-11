@@ -44,7 +44,7 @@ O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferr
     * **CSS / Tailwind**: Estilização e design responsivo.
     * **Vite**: Ambiente de desenvolvimento rápido.
 
-* **Backend (em planejamento):**
+* **Backend:**
     * **Node.js**: Ambiente de execução para o servidor.
     * **Fastfy**: Framework web para a criação das rotas e da API.
     * **PostgreSQL**: Banco de dados relacional para o armazenamento dos dados.
