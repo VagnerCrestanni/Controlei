@@ -15,6 +15,8 @@ import { listTransactions } from '../services/api';
     setInvestments
   } = useOutletContext();
 
+  const [refresh, setRefresh] = useState(0); //atualiza a cada vez que uma nova transação é adicionada
+
   useEffect(() => {  //Carregar as transações ao abrir a pagina
     async function fetchTransactions() {
       const data = await listTransactions();
@@ -23,7 +25,7 @@ import { listTransactions } from '../services/api';
       setInvestments(data.filter(transactions => transactions.type === 'investment'))
     }
     fetchTransactions();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className='FinancialControl-container'>
@@ -32,13 +34,13 @@ import { listTransactions } from '../services/api';
       <h1>Controle financeiro</h1>
         <div className="cards-container">
           <CardFinancialControl
-          title = "Renda" description = "Valores depositados" transactions = {income}
+          title = "Renda" description = "Valores depositados" transactions = {income} refresh={refresh} setRefresh={setRefresh}
           />
           <CardFinancialControl
-          title="Despesas" description = "contas pagas" transactions = {expenses}
+          title="Despesas" description = "contas pagas" transactions = {expenses} refresh={refresh} setRefresh={setRefresh}
           />
           <CardFinancialControl
-          title="Investimentos" description = "Valores investidos" transactions = {investments}
+          title="Investimentos" description = "Valores investidos" transactions = {investments} refresh={refresh} setRefresh={setRefresh}
           />
         </div>
       </main>

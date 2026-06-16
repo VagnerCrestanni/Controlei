@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createTransaction } from '../services/api';
 
-const CardFinancialControl = ({ title, description, transactions }) => {
+const CardFinancialControl = ({ title, description, transactions, refresh, setRefresh }) => {
   const [showForm, setShowForm] = useState (false);
   const [who, setWho] = useState ('');
   const [company, setCompany] = useState ('');
@@ -35,6 +35,7 @@ const CardFinancialControl = ({ title, description, transactions }) => {
     setValue('');
     setDate('');
     setShowForm(false);
+    setRefresh(prev => prev + 1); // Atualiza a lista de transações após adicionar uma nova transação, forçando o useEffect a recarregar os dados do backend
   };
 
   return (
@@ -67,7 +68,7 @@ const CardFinancialControl = ({ title, description, transactions }) => {
       <ul>
         {(transactions || []).map((item, index) => (
           <li key={index}>
-            {item.who}- {item.company}- R$ {item.value}- {item.date}
+            {item.who}- {item.company}- R$ {item.value}- {(new Date(item.date).toLocaleDateString())} 
           </li>
         ))}
       </ul>
