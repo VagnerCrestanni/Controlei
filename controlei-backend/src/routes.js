@@ -37,7 +37,7 @@ export async function transactionRoutes(app) {
 
     app.get('/transactions', async (request, reply) => {
         // 1. PREPARA - chama a função que sabe como listar
-        const transactions = await listTransactions()
+        const transactions = await listTransactions( request.query.month, request.query.year)
 
         return reply.send(transactions)
     })

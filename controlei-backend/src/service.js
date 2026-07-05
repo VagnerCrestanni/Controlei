@@ -15,9 +15,16 @@ export async function createTransaction(transaction) {
     return newTransaction;
 }
 
-export async function listTransactions() { //lista as transações
+export async function listTransactions(month, year) { //lista as transações
 
-    const transaction = await prisma.transaction.findMany()
+    const transaction = await prisma.transaction.findMany ({
+        where: {
+            date: { 
+                gte: new Date (`${year}-${String(month).padStart(2, '0')}-01`), //uso para as transações para filtrar e limar cada mes
+                lt: new Date (year, month,1), //uso para as transações para filtrar e limar cada mes 
+            }
+        }
+    })
 
     return transaction;
 }

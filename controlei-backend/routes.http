@@ -4,8 +4,8 @@ Content-Type: application/json
 {
     "who": "Vagner",
     "company": "copel",
-    "value": 200,
-    "date": "2026-06-04T00:00:00.000Z",
+    "value": 300,
+    "date": "2026-06-30T00:00:00.000Z",
     "type": "expense"
 }
 
@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "who": "Lovane",
     "company": "Mercado",
-    "value": mil,
+    "value": 100,
     "date": "2026-06-01T00:00:00.000Z",
     "type": "expense"
 }

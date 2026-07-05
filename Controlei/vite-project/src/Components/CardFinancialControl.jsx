@@ -18,9 +18,9 @@ const CardFinancialControl = ({ title, description, transactions, refresh, setRe
     }
  
     if (!who || !company || !value || !date) return;
-
+    
     const dateISO = new Date(date).toISOString(); // Converter a data para o formato ISO 8601
-
+    
     const transactionType = typeMapper[title] || 'unknown';
     const newTransaction = { // Mapear os campos do formulário para os campos esperados pela API
       who, 
@@ -68,7 +68,7 @@ const CardFinancialControl = ({ title, description, transactions, refresh, setRe
       <ul>
         {(transactions || []).map((item, index) => (
           <li key={index}>
-            {item.who}- {item.company}- R$ {item.value}- {(new Date(item.date).toLocaleDateString())} 
+            {item.who}- {item.company}- R$ {item.value}- {(new Intl.DateTimeFormat('pt-BR').format(new Date(item.date)))} 
           </li>
         ))}
       </ul>
