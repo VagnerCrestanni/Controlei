@@ -21,7 +21,7 @@ export async function listTransactions(month, year) { //lista as transações
         where: {
             date: { 
                 gte: new Date (`${year}-${String(month).padStart(2, '0')}-01`), //uso para as transações para filtrar e limar cada mes
-                lt: new Date (year, month,1), //uso para as transações para filtrar e limar cada mes 
+                lt: new Date (year, month,1), //uso para as transações para filtrar e limpar cada mes 
             }
         }
     })
