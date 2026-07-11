@@ -29,10 +29,16 @@ export async function listTransactions(month, year) { //lista as transações
     return transaction;
 }
 
-export async function summaryTransactions() {
+export async function summaryTransactions(month, year) {
 
-    const transaction = await prisma.transaction.findMany()
-
+    const transaction = await prisma.transaction.findMany({
+        where: {
+            date: {
+                gte: new Date(`${year}-${String(month).padStart(2, '0')}-01`),
+                lt: new Date(year, month, 1),
+            }
+        }
+    })
     const summary = transaction.reduce((acc, transaction) => { //summary é onde soma cada 'type' e mostra o valor total de cada um
        if (transaction.type === 'income') {
         acc.income += transaction.value
@@ -43,7 +49,7 @@ export async function summaryTransactions() {
        } else if (transaction.type === 'investment') {
         acc.investment += transaction.value
 
-       } return acc 
+       } return acc
     }, { income: 0, expense: 0, investment: 0 })
 
     return summary

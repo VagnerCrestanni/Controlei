@@ -16,8 +16,8 @@ export async function listTransactions(month, year) { //Conecta o listTransactio
     return response.json();
 } 
 
-export async function getSummary() { //Conecta o summaryTransactions do backend com o front end, para mostrar o resumo das transações
-    const response = await fetch('http://localhost:3333/transactions/summary', {
+export async function getSummary(month, year) { //Conecta o summaryTransactions do backend com o front end, para mostrar o resumo das transações
+    const response = await fetch(`http://localhost:3333/transactions/summary?month=${month}&year=${year}`, {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
     });

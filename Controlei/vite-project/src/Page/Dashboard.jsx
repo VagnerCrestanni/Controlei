@@ -20,7 +20,11 @@ const [summary, setSummary] = useState({ income: 0, expense: 0, investment: 0 })
 
 useEffect(() => { // useEffect para buscar o resumo das transações do backend e atualizar o estado summary
     async function fetchSummary() {
-      const dataSummary = await getSummary();
+      const today = new Date();
+      const currentMonth = today.getMonth() + 1;
+      const currentYear = today.getFullYear();
+      
+      const dataSummary = await getSummary(currentMonth, currentYear);
       setSummary(dataSummary);
     }
     fetchSummary();

@@ -46,8 +46,10 @@ O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferr
 
 * **Backend:**
     * **Node.js**: Ambiente de execução para o servidor.
-    * **Fastfy**: Framework web para a criação das rotas e da API.
+    * **Fastify**: Framework web para a criação das rotas e da API.
     * **PostgreSQL**: Banco de dados relacional para o armazenamento dos dados.
+    * **Prisma ORM**: Mapeamento objeto-relacional para comunicação com o banco de dados.
+    * **Zod**: Validação de dados nas requisições da API.
 
 * **Outras Ferramentas:**
     * **Git & GitHub**: Controle de versão e colaboração.
@@ -64,6 +66,8 @@ Durante o desenvolvimento do **Controlei**, alguns desafios técnicos importante
 * **Gráficos dinâmicos e interativos:** Implementação de gráficos de linha que se adaptam aos períodos selecionados (3, 6 e 12 meses).
 * **Preparação para backend:** Organização do código pensando na futura integração com banco de dados e backend em Node.js, evitando acoplamento excessivo entre lógica e interface.
  **Arquitetura pensada para evolução:** O projeto foi estruturado para facilitar a futura integração com backend e banco de dados, mantendo a lógica de cálculo desacoplada da interface.
+* **Organização da API:** API organizada entre pastas para facil implementação e manutenção, pensando na produção e sua manutenabilidade. 
+* **Banco de Dados com segurança:** Criação com testes de validação e de segurança para compor uma estrutura segura para o usuario final.
 
 ---
 
@@ -78,6 +82,8 @@ O desenvolvimento deste projeto proporcionou aprendizados importantes, especialm
 * Maior compreensão sobre como planejar funcionalidades pensando na **escalabilidade futura** da aplicação.
 * Estruturação de uma **API organizada e funcional** em Node.js para conectar o front-end ao banco de dados.
 * Implementação de **validação de dados robusta com Zod** para garantir a segurança e integridade das requisições.
+* Integração entre Frontend React e Backend em Node.js, consumindo dados reais do banco através de uma API REST.
+* Utilização de filtragem de mes e ano utilizando **gte e lt no Prisma** para que cada mes mostre apenas suas transações;
 
 ---
 
@@ -107,7 +113,30 @@ Se você deseja explorar o código ou rodar em sua máquina, siga os passos abai
 
 5.  **Acesse no navegador:**
     O aplicativo estará disponível em `http://localhost:5173`.
+    ```
 
+### Backend
+1. **Acesse a pasta do backend:**
+```bash
+   cd Controlei/controlei-backend
+```
+
+2. **Instale as dependências:**
+```bash
+   npm install
+```
+
+3. **Configure o arquivo `.env` com sua `DATABASE_URL`**
+
+4. **Execute as migrations:**
+```bash
+   npx prisma migrate dev
+```
+
+5. **Inicie o servidor:**
+```bash
+   npm run dev
+```
 ---
 
 ## ✅ Funcionalidades Atuais
@@ -119,6 +148,7 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 * **Gráfico de Dashboard:** Gráfico de linha interativo para acompahar seu dinheiro nos ultimos 3, 6 e 12 meses.
 * **Definição de Metas:** Adicionar metas de renda, despesa e investimento, com datas de expiração personalizáveis.
 * **Histórico Financeiro:** Análise completa do histórico financeiro, com visualização anual e detalhamento mensal com gráfico completo.
+* **Dados reais salvo em Banco:** Persistência de dados em PostgreSQL com Prisma ORM, garantindo que as informações não se percam entre sessões.
 
 ---
 
@@ -127,24 +157,23 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 As próximas etapas do projeto estão planejadas para transformar o **Controlei** em uma aplicação completa com backend e persistência de dados:
 
 ### 🔹 Backend
-* Criação de API REST com **Node.js**
-* Estruturação de rotas para receitas, despesas, investimentos e metas
-* Separação de camadas (controllers, services e repositories)
+* Evolução da API REST com **Node.js**
+* Estruturação de novas rotas para metas persistidas em banco
 
 ### 🔹 Autenticação
 * Sistema de login e cadastro de usuários
 * Autenticação via **JWT**
 * Proteção de rotas privadas
 
-### 🔹 Banco de Dados
-* Persistência de dados em banco relacional (PostgreSQL)
-* Modelagem das entidades financeiras
-* Integração com ORM
+### 🔹 Histórico
+* Organização do histórico por mes e ano do usuario
 
 ### 🔹 Evoluções Futuras
 * Relatórios mais avançados
 * Comparação entre períodos
 * Exportação de dados
+* Formato de data DD/MM/YYYY 
+* Deploy do backend
 
 ---
 
