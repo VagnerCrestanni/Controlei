@@ -23,3 +23,11 @@ export async function getSummary(month, year) { //Conecta o summaryTransactions 
     });
     return response.json();
 } 
+
+export async function getHistory() { //Conecta o transactionsHistory do backend com o front end, para mostrar o histórico das transações
+    const response = await fetch(`http://localhost:3333/transactions/history`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+    });
+    return response.json();
+}

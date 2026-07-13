@@ -20,8 +20,8 @@ export async function listTransactions(month, year) { //lista as transações
     const transaction = await prisma.transaction.findMany ({
         where: {
             date: { 
-                gte: new Date (`${year}-${String(month).padStart(2, '0')}-01`), //uso para as transações para filtrar e limar cada mes
-                lt: new Date (year, month,1), //uso para as transações para filtrar e limpar cada mes 
+                gte: new Date (`${year}-${String(month).padStart(2, '0')}-01`), //uso para as transações para filtrar e limpar cada mes
+                lt: new Date (year, month,1), 
             }
         }
     })
@@ -54,3 +54,25 @@ export async function summaryTransactions(month, year) {
 
     return summary
 } 
+
+export async function transactionsHistory() { //função para o histórico financeiro
+
+    const transactions = await prisma.transaction.findMany()    //busca todas as transações do banco de dados
+    
+    const History = transactions.reduce((acc, transaction) => { 
+
+        const date = new Date(transaction.date)  
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+
+        const groupKey = `${year}-${month}`    // Agrupa as transações por ano e mês
+        if (!acc[groupKey]) {
+            acc[groupKey] = { income: 0, expense: 0, investment: 0 }
+        }
+        acc[groupKey].income += transaction.type === 'income' ? transaction.value : 0
+        acc[groupKey].expense += transaction.type === 'expense' ? transaction.value : 0
+        acc[groupKey].investment += transaction.type === 'investment' ? transaction.value : 0
+        return acc
+    }, {})
+    return History
+}

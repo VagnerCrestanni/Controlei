@@ -68,6 +68,7 @@ Durante o desenvolvimento do **Controlei**, alguns desafios técnicos importante
  **Arquitetura pensada para evolução:** O projeto foi estruturado para facilitar a futura integração com backend e banco de dados, mantendo a lógica de cálculo desacoplada da interface.
 * **Organização da API:** API organizada entre pastas para facil implementação e manutenção, pensando na produção e sua manutenabilidade. 
 * **Banco de Dados com segurança:** Criação com testes de validação e de segurança para compor uma estrutura segura para o usuario final.
+* **Interatividade Instantanea:**  comunicação entre banco de dados e frontend de forma fluida e instantanea sem recarregar pagina a cada nova transação.
 
 ---
 
@@ -84,6 +85,7 @@ O desenvolvimento deste projeto proporcionou aprendizados importantes, especialm
 * Implementação de **validação de dados robusta com Zod** para garantir a segurança e integridade das requisições.
 * Integração entre Frontend React e Backend em Node.js, consumindo dados reais do banco através de uma API REST.
 * Utilização de filtragem de mes e ano utilizando **gte e lt no Prisma** para que cada mes mostre apenas suas transações;
+* Utilização do hook useEffect do React para ter comunicação entre banco de dados e frontend de forma instantanea sem precisar recarregar a pagina a cada nova transação inserida.
 
 ---
 
@@ -157,23 +159,23 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 As próximas etapas do projeto estão planejadas para transformar o **Controlei** em uma aplicação completa com backend e persistência de dados:
 
 ### 🔹 Backend
-* Evolução da API REST com **Node.js**
-* Estruturação de novas rotas para metas persistidas em banco
+* Evolução da API REST com **Node.js**.
+* Estruturação de novas rotas para metas persistidas em banco.
 
 ### 🔹 Autenticação
-* Sistema de login e cadastro de usuários
-* Autenticação via **JWT**
-* Proteção de rotas privadas
-
-### 🔹 Histórico
-* Organização do histórico por mes e ano do usuario
+* Sistema de login e cadastro de usuários.
+* Autenticação via **JWT**.
+* Proteção de rotas privadas.
 
 ### 🔹 Evoluções Futuras
-* Relatórios mais avançados
-* Comparação entre períodos
-* Exportação de dados
-* Formato de data DD/MM/YYYY 
-* Deploy do backend
+* Relatórios mais avançados onde no histórico o usuario poderá visualizar em que usou o dinheiro e não apenas o valor.
+* função de excluir uma transação.
+* Comparação entre períodos.
+* Exportação de dados.
+* Formato de data DD/MM/YYYY.
+* Deploy do backend.
+* Modo de tela escuro.
+* botão de configurações da conta.
 
 ---
 

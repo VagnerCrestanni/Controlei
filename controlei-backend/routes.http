@@ -32,6 +32,11 @@ Content-Type: application/json
 GET http://localhost:3333/transactions/summary
 Content-Type: application/json
 
+###
+
+GET http://localhost:3333/transactions/history
+Content-Type: application/json
+
 
 
 

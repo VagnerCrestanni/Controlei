@@ -1,4 +1,4 @@
-import { createTransaction, listTransactions, summaryTransactions } from './service.js';
+import { createTransaction, listTransactions, summaryTransactions, transactionsHistory } from './service.js';
 import { z } from 'zod';
 
 /*rotas para usuários
@@ -48,5 +48,11 @@ export async function transactionRoutes(app) {
 
         return reply.send(summary)
     })
-    
+
+    app.get('/transactions/history', async (request, reply) => {    // Rota para o Histórico financeiro
+       
+        const history = await transactionsHistory () 
+
+        return reply.send (history)
+    })
 }
