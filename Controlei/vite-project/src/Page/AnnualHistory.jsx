@@ -5,42 +5,24 @@ import '../Components/HistoricalGraph'
 import "./AnnualHistory.css"
 import HistoricalGraph from '../Components/HistoricalGraph';
 import { getHistory } from '../services/api';
+import { formatHistory } from '../Components/chartUtils';
 
 const AnnualHistory = () => {
   
   const [history, setHistory] = useState({}); // Estado para armazenar o histórico das transações
 
-  useEffect(() => { // useEffect para buscar o histórico das transações do backend e atualizar o estado history
-    async function fetchHistory() {
-      const dataHistory = await getHistory();
-
-      const historyFormatted = {};
-      Object.keys(dataHistory).forEach((key) => {
-
-        const [year, month] = key.split('-');
-        
-        if (!historyFormatted[year]) {  //cria o grupo de ano e meses se não existir, e inicializa os valores de receita, despesa e investimento como 0
-          historyFormatted[year] = {
-            total: { Income: 0, Expenses: 0, Investments: 0 }, months: {}
-          }; 
-        }
-        historyFormatted[year].months[month] = {    // Formata os dados do histórico para exibir no gráfico e na tabela
-          income: dataHistory[key].income,
-          expenses: dataHistory[key].expense,
-          investments: dataHistory[key].investment,
-        }
-        historyFormatted[year].total.Income += dataHistory[key].income;   // Soma os valores de receita, despesa e investimento para cada ano
-        historyFormatted[year].total.Expenses += dataHistory[key].expense;
-        historyFormatted[year].total.Investments += dataHistory[key].investment;
-      });
-      setHistory(historyFormatted);
-    }
-       fetchHistory();
-  }, []); 
-
   const [activeYear, setActiveYear] = useState(
   Object.keys(history).sort((a, b) => b - a)[0]
   );
+
+  useEffect(() => { // useEffect para buscar o histórico das transações do backend e atualizar o estado history
+    async function fetchHistory() {
+      const dataHistory = await getHistory();
+      const formatted = formatHistory(dataHistory);
+      setHistory(formatted);
+    }
+    fetchHistory();
+  }, []);
 
   const toggleYear = (year) => {
     setActiveYear(prevYear => prevYear === year ? null : year);

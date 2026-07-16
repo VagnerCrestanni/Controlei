@@ -2,21 +2,35 @@ import React, { use, useState, useEffect } from 'react';
 import Sidebar from '../Components/Sidebar';
 import AnnualData from '../Components/FakeData'
 import '../Components/DashboardGraph'
-import { getLastMonthsData } from '../Components/chartUtils';
+import { getLastMonthsData, formatHistory } from '../Components/chartUtils';
 import './Dashboard.css';
 import CardDashboard from '../Components/CardDashboard';
 import DashboardGraph from '../Components/DashboardGraph';
-import { getSummary } from '../services/api';
+import { getSummary, getHistory } from '../services/api';
 
 const Dashboard = () => {
-  const [ period, setPeriod ] = useState (1); // Estado para armazenar o período selecionado (1, 3, 6 ou 12 meses) do grafico
-  const [activeYear, setActiveYear] = useState ('2025') // Estado para armazenar o ano selecionado (2025, 2024, 2023 ou 2022) do grafico
-  const chartData = getLastMonthsData(AnnualData, period) // Função para obter os dados dos últimos meses com base no período selecionado no grafico
+  const [ period, setPeriod ] = useState (3); // Estado para armazenar o período selecionado (3, 6 ou 12 meses) do grafico
+  const [activeYear, setActiveYear] = useState ('')
+  const [chartData, setChartData] = useState([]); 
 
 const [summary, setSummary] = useState({ income: 0, expense: 0, investment: 0 }); // Estado para armazenar o resumo das transações, que é atualizado a cada vez que uma nova transação é adicionada
   const totalIncome = summary.income;
   const totalExpenses = summary.expense; 
   const totalInvestments = summary.investment; 
+
+useEffect(() => { // useEffect para buscar os dados do gráfico do backend e atualizar o estado chartData
+    async function fetchHistory() {
+      const dataHistory = await getHistory();
+      console.log("1. dataHistory:", dataHistory)
+      const formatted = formatHistory(dataHistory);
+       console.log("2. formatted:", formatted)
+      const chartFormatted = getLastMonthsData(formatted, period);
+      console.log("3. chartFormatted:", chartFormatted)
+      setChartData(chartFormatted);
+    }
+    fetchHistory();
+  }, [period]);
+
 
 useEffect(() => { // useEffect para buscar o resumo das transações do backend e atualizar o estado summary
     async function fetchSummary() {
