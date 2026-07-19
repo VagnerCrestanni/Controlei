@@ -76,3 +76,22 @@ export async function transactionsHistory() { //função para o histórico finan
     }, {})
     return History
 }
+
+
+export async function createGoal(goal) {    //função para criar uma meta financeira
+
+    const newGoal = await prisma.goal.create({
+        data: {
+            date: goal.date,
+            value: goal.value,
+            type: goal.type,
+        }
+    })
+    return newGoal;
+}
+
+export async function listGoals () {    //função para listar as metas financeiras
+   
+    const goals = await prisma.goal.findMany()
+    return goals;
+}

@@ -23,3 +23,17 @@ model Transaction {
   date    DateTime
   type    String
 }
+
+enum TransactionType {  //Restrições para o tipo de transação
+  income
+  expense
+  investment
+}
+
+model Goal {
+  id      String @id @default(uuid())
+  value   Float
+  endDate DateTime
+  type    TransactionType
+  createdAt DateTime @default(now())
+}

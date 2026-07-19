@@ -1,4 +1,5 @@
-import { createTransaction, listTransactions, summaryTransactions, transactionsHistory } from './service.js';
+import { createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
+createGoal, listGoals} from './service.js';
 import { z } from 'zod';
 
 /*rotas para usuários
@@ -55,4 +56,34 @@ export async function transactionRoutes(app) {
 
         return reply.send (history)
     })
+}
+
+
+export async function goalRoutes(app) {
+    app.post('/goals', async (request, reply) => { 
+        // Validação dos dados usando Zod
+        const createGoalSchema = z.object ({
+            date: z.coerce.date().transform((date)=> date.toISOString()),
+            value: z.number(),
+            type: z.enum(['income', 'expense', 'investment']),
+        })
+
+        let goal;
+        try { // se os dados não baterem com o formato esperado, o Zod vai lançar um erro
+            goal = createGoalSchema.parse(request.body);
+        } catch (error) {
+            return reply.status(400).send({ error: error.errors })
+        }
+        // 2. PREPARA - chama a função que sabe como salvar
+        const newGoal = await createGoal(goal)
+
+        // 3. ENTREGA - devolve uma resposta pro frontend
+        return reply.status(201).send(newGoal)
+        })
+
+
+app.get('/goals', async (request, reply) => {
+    const goals = await listGoals()
+    return reply.send(goals)
+})
 }

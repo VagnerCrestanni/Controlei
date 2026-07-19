@@ -1,6 +1,5 @@
 import React, { use, useState, useEffect } from 'react';
 import Sidebar from '../Components/Sidebar';
-import AnnualData from '../Components/FakeData'
 import '../Components/DashboardGraph'
 import { getLastMonthsData, formatHistory } from '../Components/chartUtils';
 import './Dashboard.css';
@@ -21,11 +20,8 @@ const [summary, setSummary] = useState({ income: 0, expense: 0, investment: 0 })
 useEffect(() => { // useEffect para buscar os dados do gráfico do backend e atualizar o estado chartData
     async function fetchHistory() {
       const dataHistory = await getHistory();
-      console.log("1. dataHistory:", dataHistory)
       const formatted = formatHistory(dataHistory);
-       console.log("2. formatted:", formatted)
       const chartFormatted = getLastMonthsData(formatted, period);
-      console.log("3. chartFormatted:", chartFormatted)
       setChartData(chartFormatted);
     }
     fetchHistory();

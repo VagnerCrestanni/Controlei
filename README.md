@@ -176,6 +176,7 @@ As próximas etapas do projeto estão planejadas para transformar o **Controlei*
 * Deploy do backend.
 * Modo de tela escuro.
 * botão de configurações da conta.
+* Histórico de metas com grafico para o usuario ver se está cumprindo todas as metas.
 
 ---
 

@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Sidebar from '../Components/Sidebar'
-import AnnualData from '../Components/FakeData'
 import '../Components/HistoricalGraph'
 import "./AnnualHistory.css"
 import HistoricalGraph from '../Components/HistoricalGraph';

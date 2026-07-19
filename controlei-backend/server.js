@@ -1,7 +1,6 @@
-    import { fastify } from 'fastify';
-    import cors from '@fastify/cors';
-    import { createTransaction } from './src/service.js';
-    import { transactionRoutes } from './src/routes.js';
+import { fastify } from 'fastify';
+import cors from '@fastify/cors';
+import { transactionRoutes, goalRoutes } from './src/routes.js';
 
     const server = fastify();
 
@@ -10,6 +9,8 @@
     });
 
     server.register(transactionRoutes)
+
+    server.register(goalRoutes)
 
     server.get ('/', () => {
         return "Olá mundo!";
