@@ -37,6 +37,29 @@ Content-Type: application/json
 GET http://localhost:3333/transactions/history
 Content-Type: application/json
 
+###
 
+POST http://localhost:3333/goals
+Content-Type: application/json
 
+{
+    "endDate": "2026-09-01T00:00:00.000Z",
+    "value": 100,
+    "type": "income"
+}
 
+###
+
+POST http://localhost:3333/goals
+Content-Type: application/json
+
+{
+    "endDate": "2026-06-01T00:00:00.000Z",
+    "value": 300,
+    "type": "investment"
+}
+
+###
+
+GET http://localhost:3333/goals
+Content-Type: application/json

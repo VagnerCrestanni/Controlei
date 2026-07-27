@@ -82,7 +82,7 @@ export async function createGoal(goal) {    //função para criar uma meta finan
 
     const newGoal = await prisma.goal.create({
         data: {
-            date: goal.date,
+            endDate: goal.endDate,
             value: goal.value,
             type: goal.type,
         }

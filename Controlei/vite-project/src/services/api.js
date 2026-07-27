@@ -31,3 +31,20 @@ export async function getHistory() { //Conecta o transactionsHistory do backend 
     });
     return response.json();
 }
+
+export async function createGoal(data) { //Conecta o createGoal do backend com o front end, passando os dados do formulário para a API
+    const response = await fetch('http://localhost:3333/goals', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    });
+    return response.json();
+}
+
+export async function listGoals() { //Conecta o listGoals do backend com o front end, para listar as metas
+    const response = await fetch(`http://localhost:3333/goals`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}, 
+    });
+    return response.json();
+}

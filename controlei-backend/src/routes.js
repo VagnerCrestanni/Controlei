@@ -63,7 +63,7 @@ export async function goalRoutes(app) {
     app.post('/goals', async (request, reply) => { 
         // Validação dos dados usando Zod
         const createGoalSchema = z.object ({
-            date: z.coerce.date().transform((date)=> date.toISOString()),
+            endDate: z.coerce.date().transform((date)=> date.toISOString()),
             value: z.number(),
             type: z.enum(['income', 'expense', 'investment']),
         })
