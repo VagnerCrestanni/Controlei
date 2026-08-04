@@ -8,6 +8,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//ver com o Claude se essa primera tabela posso usar pro login ou não, e ver se preciso adicionar userID ou apenas o ID pra tabela de metas e transações.
+
 model user {
   id      String @id @default(uuid())
   name    String
