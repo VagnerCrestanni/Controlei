@@ -2,7 +2,9 @@ import { fastify } from 'fastify';
 import cors from '@fastify/cors';
 import { transactionRoutes, goalRoutes } from './src/routes.js';
 
-    const server = fastify();
+    const server = fastify({
+        logger: true
+    });
 
     await server.register(cors, {
         origin: 'http://localhost:5173'
@@ -19,4 +21,9 @@ import { transactionRoutes, goalRoutes } from './src/routes.js';
     server.listen ({
         host: '0.0.0.0',
         port: process.env.PORT || 3333
+    }, (err)=> {
+        if (err) {
+            server.log.error(err);
+            process.exit(1);
+        }
     })
