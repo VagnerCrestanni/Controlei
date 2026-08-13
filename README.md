@@ -22,7 +22,7 @@ O projeto está em fase de desenvolvimento contínuo e será atualizado com novo
 
 ## 🧠 Sobre o Projeto
 
-**Controlei** surgiu a partir da dificuldade de muitas pessoas em visualizar para onde o dinheiro está indo ao longo dos meses. O Controlei surgiu para transformar dados financeiros em informações claras e visuais, facilitando decisões financeiras no dia a dia.
+**Controlei** surgiu a partir de uma dificuldade familiar em visualizar para onde o dinheiro está indo ao longo dos meses. O Controlei surgiu para transformar dados financeiros em informações claras e visuais, facilitando decisões financeiras no dia a dia, com opções de aidionar renda, despesas e investimentos.
 
 O app é ideal para usuários iniciantes e intermediários que desejam um controle total sobre suas finanças. Ele permite:
 
@@ -160,7 +160,6 @@ As próximas etapas do projeto estão planejadas para transformar o **Controlei*
 
 ### 🔹 Backend
 * Evolução da API REST com **Node.js**.
-* Estruturação de novas rotas para metas persistidas em banco.
 
 ### 🔹 Autenticação
 * Sistema de login e cadastro de usuários.
@@ -173,7 +172,6 @@ As próximas etapas do projeto estão planejadas para transformar o **Controlei*
 * Comparação entre períodos.
 * Exportação de dados.
 * Formato de data DD/MM/YYYY.
-* Deploy do backend.
 * Modo de tela escuro.
 * botão de configurações da conta.
 * Histórico de metas com grafico para o usuario ver se está cumprindo todas as metas.
