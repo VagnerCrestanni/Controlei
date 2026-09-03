@@ -2,13 +2,25 @@ import { createTransaction, listTransactions, summaryTransactions, transactionsH
 createGoal, listGoals} from './service.js';
 import { z } from 'zod';
 
-/*rotas para usuários
-router.post('/users', userController.createUser);
-router.get('/users/:id', userController.getUserById);
-router.put('/users/:id', userController.updateUser);
-router.delete('/users/:id', userController.deleteUser);
-    usar essas rotas quando for fazer o login do usuario, por enquanto é so os dados pro banco.
-*/
+
+export async function userRoutes(app) {
+    app.post('/users', async (request, reply) => {
+        // Validação dos dados usando Zod
+        const createUserSchema = z.object ({
+            email: z.email('Email inválido'),
+            password: z.string().min(6, 'Senha deve ter no mínimo 6 caracteres'),
+            name: z.string().optional(),
+        })
+    })
+
+    app.get('/users', async (request, reply) => {
+
+        const loginUserSchema = z.object ({
+            email: z.email('Email inválido'),
+            password: z.string().min(1, 'Senha é obrigatória'),
+        })
+    })
+}
 
 export async function transactionRoutes(app) {
     app.post('/transactions', async (request, reply) => {

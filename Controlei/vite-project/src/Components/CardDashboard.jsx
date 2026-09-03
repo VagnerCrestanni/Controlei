@@ -37,7 +37,7 @@ const CardDashboard = ({ title, value, description, refresh, setRefresh, goalCre
       <h3>{title}</h3>
       <h2>{value}</h2>
 
-      <button onClick={()=> setShowForm(!showForm)} className="btn-meta">Adiconar meta</button>
+      <button onClick={()=> setShowForm(!showForm)} className="btn-meta">Adicionar meta</button>
       
       {showForm && (
         <form onSubmit={lidarEnvio}>
