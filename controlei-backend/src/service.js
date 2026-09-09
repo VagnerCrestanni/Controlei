@@ -1,4 +1,51 @@
 import { prisma } from './prisma.js';
+import bcrypt from 'bcryptjs';
+
+export async function registerUser(user) { 
+      //função para registrar usuário
+    const existingUser = await prisma.user.findUnique({ //verifica se o usuário já existe no banco de dados
+        where: { email: user.email }
+    })
+    if (existingUser) {
+        throw new Error('Usuário já cadastrado') //se o usuário já existir, lança um erro
+    }
+
+    const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10; //número de rounds para o hash da senha
+
+    const hashedPassword = await bcrypt.hash(user.password, saltRounds); //hash da senha do usuário
+
+    user.hashedPassword = hashedPassword; //atribui a senha hasheada ao usuário
+
+    const newUser = await prisma.user.create({  //cria um novo usuário no banco de dados
+        data: {
+            email: user.email,
+            password_hash: hashedPassword,
+            name: user.name,
+        }
+    })
+    delete newUser.password; //remove a senha do usuário antes de retornar
+
+    return newUser;
+}
+
+export async function loginUser(email, password) {
+    //função para logar usuário
+    const user = await prisma.user.findUnique({
+        where: { email: email }
+    })
+    if (!user) { //verifica se o usuário existe no banco de dados
+        throw new Error('Email ou senha incorretos')
+    } 
+    const passwordMatch = await bcrypt.compare(password, user.password_hash); //compara a senha do usuário com a senha hasheada no banco de dados
+    if (!passwordMatch) { //verifica se a senha do usuário está correta
+        throw new Error('Email ou senha incorretos')
+    }
+    return { 
+        id: user.id,
+        email: user.email,
+        name: user.name,
+    };
+}
 
 export async function createTransaction(transaction) {  
     

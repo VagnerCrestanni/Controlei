@@ -1,13 +1,20 @@
 import { fastify } from 'fastify'; 
 import cors from '@fastify/cors';
-import { transactionRoutes, goalRoutes } from './src/routes.js';
+import fastifyJwt from '@fastify/jwt';
+import { userRoutes, transactionRoutes, goalRoutes } from './src/routes.js';
 
     const server = fastify({
         logger: true
     });
 
+    server.register(userRoutes)
+
     await server.register(cors, {
         origin: process.env.FRONTEND_URL || 'http://localhost:5173', //FRONTEND_URL é a variável de ambiente que armazena a URL do front end, caso não exista, será usado o valor padrão 'http://localhost:5173'
+    });
+
+    await server.register(fastifyJwt, {
+        secret: process.env.JWT_SECRET || 'uma_frase_muito_secreta_para_desenvolvimento', 
     });
 
     server.register(transactionRoutes)

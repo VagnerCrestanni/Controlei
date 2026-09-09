@@ -1,24 +1,77 @@
-import { createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
+import { registerUser, loginUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
 createGoal, listGoals} from './service.js';
 import { z } from 'zod';
 
 
 export async function userRoutes(app) {
-    app.post('/users', async (request, reply) => {
+    app.post('/register', async (request, reply) => {   //rota para o registro de usuário
         // Validação dos dados usando Zod
-        const createUserSchema = z.object ({
-            email: z.email('Email inválido'),
+        const registerSchema = z.object ({
+            email: z.string().email('Email inválido'),
             password: z.string().min(6, 'Senha deve ter no mínimo 6 caracteres'),
-            name: z.string().optional(),
+            name: z.string(),
         })
+
+        const validation = registerSchema.safeParse(request.body);
+
+         if (!validation.success) { //pegamos a primeira mensagem de erro do Zod e devolvemos pro frontend
+            const firstError = validation.error.issues[0].message;
+            return reply.status(400).send({ error: firstError });
+         }
+
+        try { // se os dados não baterem com o formato esperado, o Zod vai lançar um erro
+            const newUser = await registerUser(validation.data) //chama a função que sabe como salvar
+            return reply.status(201).send(newUser) //devolve uma resposta pro frontend
+       
+        } catch (error) {
+
+            if (error instanceof Error) { //verifica se o erro é zod
+                 return reply.status(400).send({ error: error.message })
+                }
+
+            return reply.status(500).send({ error: 'Erro interno do servidor' })
+        }
     })
 
-    app.get('/users', async (request, reply) => {
 
-        const loginUserSchema = z.object ({
-            email: z.email('Email inválido'),
+    app.post('/login', async (request, reply) => {  //rota para o login de usuário
+
+        const loginSchema = z.object ({
+            email: z.string().email('Email inválido'),
             password: z.string().min(1, 'Senha é obrigatória'),
         })
+
+        const validation = loginSchema.safeParse(request.body);
+
+        if (!validation.success) { //pegamos a primeira mensagem de erro do Zod e devolvemos pro frontend
+            const firstError = validation.error.issues[0].message;
+            return reply.status(400).send({ error: firstError });
+         }
+
+        try {
+            const { email, password } = validation.data; //valida os dados que vieram do frontend
+    
+            const user = await loginUser(email, password) //chama a função que sabe como logar
+
+            const token = await reply.jwtSign( //gera o token JWT
+                {sub: user.id,
+                name : user.name},
+                {
+                sign: { expiresIn: '1d'}
+                }
+        )
+
+            return reply.status(200).send({
+                message: 'Login realizado com sucesso',
+                token,
+            })
+        } catch (error) {
+            if (error instanceof z.ZodError) { //
+                return reply.status(400).send({ error: error.errors[0].message })
+            }
+
+        return reply.status(401).send({ error: error.message})
+        }
     })
 }
 
@@ -50,14 +103,14 @@ export async function transactionRoutes(app) {
 
     app.get('/transactions', async (request, reply) => {
         // 1. PREPARA - chama a função que sabe como listar
-        const transactions = await listTransactions( request.query.month, request.query.year)
+        const transactions = await listTransactions( request.query.month, request.query.year )
 
         return reply.send(transactions)
     })
 
     app.get('/transactions/summary', async (request, reply) => {
         // 1. PREPARA - chama a função que sabe como listar
-        const summary = await summaryTransactions(  request.query.month, request.query.year)
+        const summary = await summaryTransactions(  request.query.month, request.query.year )
 
         return reply.send(summary)
     })
