@@ -16,10 +16,14 @@ model User {
   password_hash String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  transactions Transaction[]
+  goals Goal[]
 }
 
 model Transaction {
   id      String @id @default(uuid())
+  userId  String
+  user    User @relation(fields: [userId], references: [id])
   who     String
   company String
   value   Float
@@ -35,6 +39,8 @@ enum TransactionType {  //Restrições para o tipo de transação
 
 model Goal {
   id      String @id @default(uuid())
+  userId  String
+  user    User @relation(fields: [userId], references: [id])
   value   Float
   endDate DateTime
   type    TransactionType

@@ -56,6 +56,7 @@ export async function createTransaction(transaction) {
             value: transaction.value,
             date: transaction.date,
             type: transaction.type,
+            userId: transaction.userId, //associa a transação ao usuário
          }
     })
 
@@ -66,6 +67,8 @@ export async function listTransactions(month, year) { //lista as transações
 
     const transaction = await prisma.transaction.findMany ({
         where: {
+            userId: transaction.userId,
+            
             date: { 
                 gte: new Date (`${year}-${String(month).padStart(2, '0')}-01`), //uso para as transações para filtrar e limpar cada mes
                 lt: new Date (year, month,1), 
@@ -80,6 +83,8 @@ export async function summaryTransactions(month, year) {
 
     const transaction = await prisma.transaction.findMany({
         where: {
+            userId: transaction.userId,
+
             date: {
                 gte: new Date(`${year}-${String(month).padStart(2, '0')}-01`),
                 lt: new Date(year, month, 1),
@@ -104,8 +109,12 @@ export async function summaryTransactions(month, year) {
 
 export async function transactionsHistory() { //função para o histórico financeiro
 
-    const transactions = await prisma.transaction.findMany()    //busca todas as transações do banco de dados
-    
+    const transactions = await prisma.transaction.findMany({//busca todas as transações do banco de dados
+        where: {
+            userId: transaction.userId,
+        },
+    }) 
+       
     const History = transactions.reduce((acc, transaction) => { 
 
         const date = new Date(transaction.date)  
@@ -132,6 +141,7 @@ export async function createGoal(goal) {    //função para criar uma meta finan
             endDate: goal.endDate,
             value: goal.value,
             type: goal.type,
+            userId: goal.userId, //associa a meta ao usuário
         }
     })
     return newGoal;
@@ -139,6 +149,8 @@ export async function createGoal(goal) {    //função para criar uma meta finan
 
 export async function listGoals () {    //função para listar as metas financeiras
    
-    const goals = await prisma.goal.findMany()
+    const goals = await prisma.goal.findMany({
+        where: { userId: goal.userId }
+    })
     return goals;
 }
