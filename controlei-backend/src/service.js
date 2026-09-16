@@ -23,7 +23,7 @@ export async function registerUser(user) {
             name: user.name,
         }
     })
-    delete newUser.password; //remove a senha do usuário antes de retornar
+    delete newUser.password_hash; //remove a senha do usuário antes de retornar
 
     return newUser;
 }
@@ -63,11 +63,11 @@ export async function createTransaction(transaction) {
     return newTransaction;
 }
 
-export async function listTransactions(month, year) { //lista as transações
+export async function listTransactions( userId, month, year) { //lista as transações
 
     const transaction = await prisma.transaction.findMany ({
         where: {
-            userId: transaction.userId,
+            userId: userId,
             
             date: { 
                 gte: new Date (`${year}-${String(month).padStart(2, '0')}-01`), //uso para as transações para filtrar e limpar cada mes
@@ -79,11 +79,11 @@ export async function listTransactions(month, year) { //lista as transações
     return transaction;
 }
 
-export async function summaryTransactions(month, year) {
+export async function summaryTransactions( userId, month, year) {
 
     const transaction = await prisma.transaction.findMany({
         where: {
-            userId: transaction.userId,
+            userId: userId,
 
             date: {
                 gte: new Date(`${year}-${String(month).padStart(2, '0')}-01`),
@@ -107,11 +107,11 @@ export async function summaryTransactions(month, year) {
     return summary
 } 
 
-export async function transactionsHistory() { //função para o histórico financeiro
+export async function transactionsHistory(userId) { //função para o histórico financeiro
 
     const transactions = await prisma.transaction.findMany({//busca todas as transações do banco de dados
         where: {
-            userId: transaction.userId,
+            userId: userId,
         },
     }) 
        
@@ -147,10 +147,12 @@ export async function createGoal(goal) {    //função para criar uma meta finan
     return newGoal;
 }
 
-export async function listGoals () {    //função para listar as metas financeiras
+export async function listGoals (userId) {    //função para listar as metas financeiras
    
     const goals = await prisma.goal.findMany({
-        where: { userId: goal.userId }
+        where: { 
+            userId: userId 
+        }
     })
     return goals;
 }

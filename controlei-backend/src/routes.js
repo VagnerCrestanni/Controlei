@@ -1,9 +1,11 @@
 import { registerUser, loginUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
 createGoal, listGoals} from './service.js';
+import { authHook } from './authHook.js';
 import { z } from 'zod';
 
 
 export async function userRoutes(app) {
+    
     app.post('/register', async (request, reply) => {   //rota para o registro de usuário
         // Validação dos dados usando Zod
         const registerSchema = z.object ({
@@ -76,6 +78,8 @@ export async function userRoutes(app) {
 }
 
 export async function transactionRoutes(app) {
+    app.addHook ('onRequest', authHook) //adiciona o hook de autenticação para todas as rotas abaixo
+
     app.post('/transactions', async (request, reply) => {
         // Validação dos dados usando Zod
         const createTransactionSchema = z.object ({
@@ -94,30 +98,35 @@ export async function transactionRoutes(app) {
             return reply.status(400).send({ error: error.errors })
         }
 
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+
         // 2. PREPARA - chama a função que sabe como salvar
-         const newTransaction = await createTransaction(Transaction)
+         const newTransaction = await createTransaction({...Transaction, userId})
 
          // 3. ENTREGA - devolve uma resposta pro frontend
          return reply.status(201).send(newTransaction)
     })
 
-    app.get('/transactions', async (request, reply) => {
-        // 1. PREPARA - chama a função que sabe como listar
-        const transactions = await listTransactions( request.query.month, request.query.year )
+    app.get('/transactions', async (request, reply) => { // 1. PREPARA - chama a função que sabe como listar
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+
+        const transactions = await listTransactions( userId, request.query.month, request.query.year )
 
         return reply.send(transactions)
     })
 
-    app.get('/transactions/summary', async (request, reply) => {
-        // 1. PREPARA - chama a função que sabe como listar
-        const summary = await summaryTransactions(  request.query.month, request.query.year )
+    app.get('/transactions/summary', async (request, reply) => {  // 1. PREPARA - chama a função que sabe como listar
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+       
+        const summary = await summaryTransactions( userId, request.query.month, request.query.year )
 
         return reply.send(summary)
     })
 
     app.get('/transactions/history', async (request, reply) => {    // Rota para o Histórico financeiro
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
        
-        const history = await transactionsHistory () 
+        const history = await transactionsHistory (userId) 
 
         return reply.send (history)
     })
@@ -125,6 +134,8 @@ export async function transactionRoutes(app) {
 
 
 export async function goalRoutes(app) {
+    app.addHook ('onRequest', authHook) //adiciona o hook de autenticação para todas as rotas abaixo
+
     app.post('/goals', async (request, reply) => { 
         // Validação dos dados usando Zod
         const createGoalSchema = z.object ({
@@ -139,16 +150,21 @@ export async function goalRoutes(app) {
         } catch (error) {
             return reply.status(400).send({ error: error.errors })
         }
+
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+
         // 2. PREPARA - chama a função que sabe como salvar
-        const newGoal = await createGoal(goal)
+        const newGoal = await createGoal({...goal, userId})
 
         // 3. ENTREGA - devolve uma resposta pro frontend
         return reply.status(201).send(newGoal)
         })
 
 
-app.get('/goals', async (request, reply) => {
-    const goals = await listGoals()
+app.get('/goals', async (request, reply) => { // 1. PREPARA - chama a função que sabe como listar
+    const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+
+    const goals = await listGoals(userId)
     return reply.send(goals)
 })
 }

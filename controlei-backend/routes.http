@@ -2,27 +2,50 @@ POST http://localhost:3333/register
 Content-Type: application/json
 
 {
-    "name": "Maria",
-    "email": "maria@example.com",
-    "password": "123456"
+  "email": "teste1@teste.com",
+  "password": "123456",
+  "name": "Usuário Teste 1"
 }
 
 ###
 
+POST http://localhost:3333/register
+Content-Type: application/json
+
+{
+  "email": "teste2@teste.com",
+  "password": "123456",
+  "name": "Usuário Teste 2"
+}
+
+###
+
+# @name loginUser1
 POST http://localhost:3333/login
 Content-Type: application/json
 
 {
-    "email": "maria@example.com",
-    "password": "123456"
+  "email": "teste1@teste.com",
+  "password": "123456"
+}
+
+###
+
+# @name loginUser2
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+  "email": "teste2@teste.com",
+  "password": "123456"
 }
 
 ###
 
 POST http://localhost:3333/transactions
 Content-Type: application/json
-
-{
+Authorization: Bearer {{loginUser1.response.body.token}}
+{ 
     "who": "Vagner",
     "company": "copel",
     "value": 300,
@@ -46,39 +69,23 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3333/transactions
-Content-Type: application/json
 
 ###
 
-GET http://localhost:3333/transactions/summary
-Content-Type: application/json
+### Ver transações do usuário 1
+GET http://localhost:3333/transactions?month=6&year=2026
+Authorization: Bearer {{loginUser1.response.body.token}}
+
+###
+
+### Ver transações do usuário 2
+GET http://localhost:3333/transactions?month=6&year=2026
+Authorization: Bearer {{loginUser2.response.body.token}}
 
 ###
 
 GET http://localhost:3333/transactions/history
 Content-Type: application/json
-
-###
-
-POST http://localhost:3333/goals
-Content-Type: application/json
-
-{
-    "endDate": "2026-09-01T00:00:00.000Z",
-    "value": 100,
-    "type": "income"
-}
-
-###
-
-POST http://localhost:3333/goals
-Content-Type: application/json
-
-{
-    "endDate": "2026-06-01T00:00:00.000Z",
-    "value": 300,
-    "type": "investment"
-}
 
 ###
 
