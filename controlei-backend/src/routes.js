@@ -1,11 +1,13 @@
+import fastify from 'fastify';
 import { registerUser, loginUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
 createGoal, listGoals} from './service.js';
 import { authHook } from './authHook.js';
+import rateLimit from '@fastify/rate-limit';
 import { z } from 'zod';
 
 
 export async function userRoutes(app) {
-    
+
     app.post('/register', async (request, reply) => {   //rota para o registro de usuário
         // Validação dos dados usando Zod
         const registerSchema = z.object ({
@@ -35,10 +37,30 @@ export async function userRoutes(app) {
         }
     })
 
+    await app.register ( rateLimit, {
+    global: false, // desabilita o rate limit global
+    })
 
-    app.post('/login', async (request, reply) => {  //rota para o login de usuário
+    app.post('/login', {
 
-        const loginSchema = z.object ({
+        config: { //configurações de limite de tentatiivas de login
+            rateLimit: {
+                max: parseInt(process.env.LOGIN_MAX_ATTEMPTS) || 5, // máximo de 5 requisições
+                timeWindow: parseInt(process.env.LOGIN_WINDOW_TIME) || 1800000, // por minuto
+
+                errorResponseBuilder: (req, context) => { //mensagme de erro pérsonalizada
+                    const minutesRemaining = Math.ceil(context.ttl / 1000 / 60);
+                    return {
+                        statusCode: 429,
+                        error: 'Too Many Requests',
+                        message: `Você excedeu o limite de ${context.max} tentativas de login. Por favor, tente novamente em ${minutesRemaining} minutos.`
+                    }
+                }
+             }
+          }
+        }, async (request, reply) => {  //rota para o login de usuário
+
+        const loginSchema = z.object ({ 
             email: z.string().email('Email inválido'),
             password: z.string().min(1, 'Senha é obrigatória'),
         })

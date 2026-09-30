@@ -3,8 +3,10 @@ import cors from '@fastify/cors';
 import fastifyJwt from '@fastify/jwt';
 import { userRoutes, transactionRoutes, goalRoutes } from './src/routes.js';
 
+
     const server = fastify({
-        logger: true
+        trustProxy: true, // Para rodar atras do Proxie e saber o IP das requisições
+        logger: true    //Ativa os logs do sistema
     });
 
     server.register(userRoutes)
