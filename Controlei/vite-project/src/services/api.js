@@ -14,8 +14,13 @@ export async function registerUser(data) { //Conecta o registerUser do backend c
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
-    return response.json();
+    const result = await response.json();
+    if (!response.ok) {
+        throw new Error(result.error || 'Erro ao registrar usuário'); //Se a resposta não for ok, lança um erro com a mensagem do backend
+    }
+    return result;
 }
+
 
 export async function loginUser(data) { //Conecta o loginUser do backend com o front end, passando os dados do formulário para a API
     const response = await fetch(`${BASE_URL}/login`, {
@@ -23,7 +28,11 @@ export async function loginUser(data) { //Conecta o loginUser do backend com o f
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     });
-    return response.json();
+    const result = await response.json();
+    if (!response.ok) {
+        throw new Error(result.error || 'Erro ao fazer login'); //Se a resposta não for ok, lança um erro com a mensagem do backend
+    }
+    return result;
 }
 
 //Chamado para a API

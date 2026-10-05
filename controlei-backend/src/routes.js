@@ -52,8 +52,7 @@ export async function userRoutes(app) {
                     const minutesRemaining = Math.ceil(context.ttl / 1000 / 60);
                     return {
                         statusCode: 429,
-                        error: 'Too Many Requests',
-                        message: `Você excedeu o limite de ${context.max} tentativas de login. Por favor, tente novamente em ${minutesRemaining} minutos.`
+                        error: `Você excedeu o limite de ${context.max} tentativas de login. Por favor, tente novamente em ${minutesRemaining} minutos.`
                     }
                 }
              }
