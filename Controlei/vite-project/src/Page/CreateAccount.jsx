@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './CreateAccount.css';
 import { FiEyeOff, FiEye  } from "react-icons/fi";
-import { registerUser, loginUser } from '../services/api';
+import { registerUser} from '../services/api';
 
 const CreateAccount = () => {
   
@@ -19,6 +19,7 @@ const CreateAccount = () => {
 
   const [erro, setErro] = useState(''); //Estado para mensagem de erro
   const [successMessage, setSuccessMessage] = useState(''); //Estado para mensagem de sucesso
+ 
   const handleCriarConta = async (e) => {
     e.preventDefault(); 
     setErro(''); //Limpa a mensagem de erro antes de validar os campos
@@ -45,7 +46,7 @@ const CreateAccount = () => {
       }, 1500) //redireciona para a página de login após 1,5 segundos
 
       } catch (error) {
-      setErro(error.message); //Exibe a mensagem de erro retornada pelo backend
+      setErro(error.message || 'Erro ao criar conta.'); //Exibe a mensagem de erro retornada pelo backend
     }
   };
 
@@ -59,9 +60,9 @@ const CreateAccount = () => {
       <h1>Criar Conta</h1>
       <p>Preencha os dados abaixo para criar sua conta:</p>
 
-      {erro && <p style={{ color: 'red' }}>{erro}</p>}
+      {erro && <p style={{ color: 'red' }}>{erro}</p>} 
 
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>} 
       
       <div className='senha-container'>
       <input
@@ -105,7 +106,7 @@ const CreateAccount = () => {
 
       <br />
 
-      <button className="botaoLoguin" type="submit">
+      <button className="botaoLogin" type="submit">
         Criar Conta
       </button>
       <br />

@@ -80,7 +80,7 @@ const ForgotPassword = () => {
         </span>
       </div>
 
-      <button className="botaoLoguin" type="submit">
+      <button className="botaoLogin" type="submit">
         Redefinir Senha
       </button>
     <br/>
