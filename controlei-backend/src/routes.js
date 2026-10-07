@@ -80,7 +80,7 @@ export async function userRoutes(app) {
                 {sub: user.id,
                 name : user.name},
                 {
-                sign: { expiresIn: '1d'}
+                sign: { expiresIn: '2h' } //expira em 2 horas
                 }
         )
 
