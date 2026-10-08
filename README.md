@@ -159,7 +159,7 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 As próximas etapas do projeto estão planejadas para transformar o **Controlei** em uma aplicação completa com backend e persistência de dados:
 
 ### 🔹 Backend
-* Evolução da API REST com **Node.js**.
+* Evolução das funcionalidades como edição e exclusão de transações **Node.js**.
 
 ### 🔹 Autenticação
 * Sistema de login e cadastro de usuários.

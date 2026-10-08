@@ -6,19 +6,25 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-//ver com o Claude se essa primera tabela posso usar pro login ou não, e ver se preciso adicionar userID ou apenas o ID pra tabela de metas e transações.
 
-model user {
+model User {
   id      String @id @default(uuid())
   name    String
-  address String
-  age     Int
+  email   String @unique
+  password_hash String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  transactions Transaction[]
+  goals Goal[]
 }
 
 model Transaction {
   id      String @id @default(uuid())
+  userId  String
+  user    User @relation(fields: [userId], references: [id])
   who     String
   company String
   value   Float
@@ -34,6 +40,8 @@ enum TransactionType {  //Restrições para o tipo de transação
 
 model Goal {
   id      String @id @default(uuid())
+  userId  String
+  user    User @relation(fields: [userId], references: [id])
   value   Float
   endDate DateTime
   type    TransactionType
