@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 import { registerUser, loginUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
 createGoal, listGoals} from './service.js';
-import { authHook } from './authHook.js';
+import { authHook}  from './authHook.js';
 import rateLimit from '@fastify/rate-limit';
 import { z } from 'zod';
 
