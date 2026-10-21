@@ -21,6 +21,7 @@ const dashData = {
 
 const dashOptions = {
   responsive: true,
+  maintainAspectRatio: false, // Permite que o gráfico se ajuste ao tamanho do contêiner pai
 
   plugins: {
     legend: {
@@ -50,7 +51,10 @@ const dashOptions = {
 
   return (
     <div className="DashboardGraph-container"
-    style={{ position: 'relative', height: '45vh', width: '100%', }}>
+    style={{ position: 'relative', 
+             width: '100%',
+             height: '380px' }}>
+
       <Line data={dashData} options={dashOptions}/>
     </div>
   )

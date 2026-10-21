@@ -11,7 +11,7 @@
 
 .dashboard-container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
   }
   
   .dashboard-content {
@@ -21,10 +21,18 @@
     width: 100%;
     box-sizing: border-box;
   }
+
+  .chart-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
   
   .cards-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
     margin-top: 20px;
   }
@@ -33,7 +41,6 @@
     background: white;
     padding: 20px;
     border-radius: 15px;
-    width: 300px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 
@@ -65,27 +72,20 @@
   
   @media (max-width: 768px) {
     html, body, main, .wrapper, #root {
-    overflow-y: auto !important;
-    overflow-x: hidden !important; 
-    height: auto !important;       
-    min-height: 100vh !important; 
+    min-height: 100vh;
+    overflow-y: auto;
   }
 
   .chart-container { 
-    display: block !important;
-    width: 100% !important;
-    background-color: white !important;
-    padding: 20px !important;
-    border-radius: 15px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
-    margin-bottom: 20px !important; 
-    margin-top: 20px !important;
-    box-sizing: border-box !important;
-  }
-
-  .chart-container canvas {
-    height: 250px !important; 
-    width: 100% !important;
+    display: block;
+    width: 100%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px; 
+    margin-top: 20px;
+    box-sizing: border-box ;
   }
 
   .card-chart-container { 

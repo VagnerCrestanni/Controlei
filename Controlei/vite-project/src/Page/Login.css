@@ -1,6 +1,8 @@
 
 body {
     margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: #1e293b;
 }
 
 img {

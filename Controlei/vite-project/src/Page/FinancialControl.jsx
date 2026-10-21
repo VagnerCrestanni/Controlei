@@ -36,7 +36,7 @@ import { listTransactions } from '../services/api';
       <Sidebar/>
       <main className='FinancialControl-content'>
       <h1>Controle financeiro</h1>
-        <div className="cards-container">
+        <div className="cardsFinancialControl-container">
           <CardFinancialControl
           title = "Renda" description = "Valores depositados" transactions = {income} refresh={refresh} setRefresh={setRefresh}
           />
