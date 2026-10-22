@@ -1,6 +1,6 @@
 # Objetivo do Backend
 
-O Backend do COntrolei é responsável pela autenticação, gestão de transações, investimentos, mestas e consolidaçãod e dados históricos para dashboards financeiros.
+O Backend do Controlei é responsável pela autenticação, gestão de transações, investimentos, mestas e consolidaçãod e dados históricos para dashboards financeiros.
 
 ---
 

@@ -51,6 +51,12 @@ O projeto está sendo desenvolvido com o seguinte conjunto de tecnologias e ferr
     * **Prisma ORM**: Mapeamento objeto-relacional para comunicação com o banco de dados.
     * **Zod**: Validação de dados nas requisições da API.
 
+* **Banco de Dados:**
+    * **PostgreSQL**: banco relacional escolhido por três motivos:
+        * **Dados naturalmente relacionais:** usuários, transações e metas se conectam por chaves (`userId`), e o modelo relacional representa e consulta isso de forma direta.
+        * **Integridade dos dados financeiros:** o suporte a transações ACID garante que uma operação é gravada por inteiro ou não é gravada, o que importa quando se lida com valores em dinheiro.
+        * **Boa integração com o ecossistema:** funciona bem com o Prisma ORM, tem suporte nativo a tipos como enum e datas (usados em `TransactionType` e nos filtros por mês e ano) e possui opções de hospedagem gratuita, como o Neon.
+
 * **Outras Ferramentas:**
     * **Git & GitHub**: Controle de versão e colaboração.
 
@@ -86,6 +92,12 @@ O desenvolvimento deste projeto proporcionou aprendizados importantes, especialm
 * Integração entre Frontend React e Backend em Node.js, consumindo dados reais do banco através de uma API REST.
 * Utilização de filtragem de mes e ano utilizando **gte e lt no Prisma** para que cada mes mostre apenas suas transações;
 * Utilização do hook useEffect do React para ter comunicação entre banco de dados e frontend de forma instantanea sem precisar recarregar a pagina a cada nova transação inserida.
+
+* Diferença entre **autenticação** (confirmar quem é o usuário) e **autorização** (definir o que ele pode acessar), aplicada ao filtrar todas as consultas pelo usuário logado.
+* Armazenamento seguro de senhas com **hash (bcrypt)**, entendendo por que o hash é irreversível e criptografia não.
+* Uso de **JWT com expiração curta** para limitar o estrago caso um token seja roubado, e de um hook `onRequest` no Fastify para proteger as rotas em um único lugar.
+* Testes manuais de isolamento de dados entre dois usuários, confirmando que um não enxerga as transações do outro.
+* Análise dos trade-offs de segurança ao guardar o token no `localStorage` e decisão consciente de não implementar refresh token neste projeto.
 
 ---
 
@@ -152,26 +164,22 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
 * **Histórico Financeiro:** Análise completa do histórico financeiro, com visualização anual e detalhamento mensal com gráfico completo.
 * **Dados reais salvo em Banco:** Persistência de dados em PostgreSQL com Prisma ORM, garantindo que as informações não se percam entre sessões.
 
+* **Cadastro e Autenticação de Usuário:**
+    * Cadastro com validação dos dados (Zod) e senha protegida por hash (bcrypt), nunca armazenada em texto puro.
+    * Login com token JWT de curta duração (2 horas).
+    * Proteção contra tentativas repetidas: após 5 erros de senha, o login fica bloqueado por 30 minutos.
+    * Rotas de transações e metas protegidas: sem token válido, a API recusa a requisição.
+    * Isolamento de dados: cada usuário acessa apenas as próprias transações e metas.
+
 ---
-
-## 🛣️ Roadmap de Evolução
-
-As próximas etapas do projeto estão planejadas para transformar o **Controlei** em uma aplicação completa com backend e persistência de dados:
-
-### 🔹 Backend
-* Evolução das funcionalidades como edição e exclusão de transações **Node.js**.
-
-### 🔹 Autenticação
-* Sistema de login e cadastro de usuários.
-* Autenticação via **JWT**.
-* Proteção de rotas privadas.
 
 ### 🔹 Evoluções Futuras
 * Relatórios mais avançados onde no histórico o usuario poderá visualizar em que usou o dinheiro e não apenas o valor.
-* função de excluir uma transação.
+* Função de excluir uma transação ou meta.
+* Função de editar uma transação ou meta.
+* Função que mostra se a meta está sendo batida ou não.
 * Comparação entre períodos.
 * Exportação de dados.
-* Formato de data DD/MM/YYYY.
 * Modo de tela escuro.
 * botão de configurações da conta.
 * Histórico de metas com grafico para o usuario ver se está cumprindo todas as metas.
