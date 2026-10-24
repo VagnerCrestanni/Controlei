@@ -8,7 +8,7 @@ const CardDashboard = ({ title, value, description, refresh, setRefresh, goalCre
 
    const lidarEnvio = async (e) => {
     e.preventDefault();
-    console.log("createGoal é:", createGoal)
+
     const typeMapper = {
       'Receitas': 'income',
       'Despesas': 'expense',

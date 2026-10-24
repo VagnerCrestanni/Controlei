@@ -5,7 +5,7 @@ import { getLastMonthsData, formatHistory } from '../Components/chartUtils';
 import './Dashboard.css';
 import CardDashboard from '../Components/CardDashboard';
 import DashboardGraph from '../Components/DashboardGraph';
-import { getSummary, getHistory, listGoals, createGoal } from '../services/api';
+import { getSummary, getHistory, listGoals } from '../services/api';
 
 const Dashboard = () => {
   const [ period, setPeriod ] = useState (3); // Estado para armazenar o período selecionado (3, 6 ou 12 meses) do grafico

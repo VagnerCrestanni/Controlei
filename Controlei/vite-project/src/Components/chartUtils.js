@@ -30,7 +30,7 @@ export function getLastMonthsData(allYearData, period) {        //Essa função 
       label: `${month}/${year.slice(-2)}`,
       Receita: data.income || 0,
       Despesa: data.expenses || 0,
-      Investimento: data.investment || 0,
+      Investimento: data.investments || 0,
     }))
   ).slice(-period);
 }
