@@ -27,6 +27,7 @@ const HistoricalGraph = ({ monthlyData, activeYear }) => {  //Verifica se tem um
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',

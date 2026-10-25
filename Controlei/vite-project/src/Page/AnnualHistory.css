@@ -1,14 +1,13 @@
 .AnnualHistory-container {
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 .AnnualHistory-content {
     flex-grow: 1;
-    overflow-y: auto;
-    overflow-x: hidden; 
-    padding: 2.5rem;
+    min-width: 0;
+    flex-direction: column; 
+    padding: 30px;
     background-color: #f4f7f9; 
 }
 
@@ -19,9 +18,10 @@
     margin-bottom: 2rem;
 }
 
-h1 {
+ h1 {
     font-size: 1.5rem; 
     font-weight: 600; 
+    margin: 0;
     color: #333;
 }
 
@@ -33,18 +33,33 @@ h1 {
     cursor: pointer;
 }
 
-.table-container {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+.table-container,
+    .HistoricalGraph-container {
+      background: var(--card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .table-container {
+        overflow-x: auto;   
+    }
+
+    .HistoricalGraph-container {
+        position: relative;
+        height: 340px;
+        margin-top: 20px;
 }
 
-table {
+.table-container table {
     width: 100%; 
     border-collapse: collapse;
     font-size: 0.875rem; 
     color: #555;
+}
+
+.table-container td {
+  white-space: nowrap;   
 }
 
 .table-header-row {
@@ -91,39 +106,53 @@ table {
 
 .month-cell {
     padding-left: 2rem;
-    color: #777;
+    color: var(--primary);
 }
 
 .year-cell {
     font-weight: 700;
-    color: #007bff; 
+    color: #2c2e30; 
 }
 
+
 @media (max-width: 768px) {
-    .AnnualHistory-container  {
-         flex-direction: column;
-         align-items: center;
-         height: auto; 
-    }
 
-    .AnnualHistory-content {
-        padding: 10px;
-        width: 100%;
-        min-width: 0;
-        overflow-y: visible;
-        overflow-x: hidden;
-    }
+.AnnualHistory-container {
+    flex-direction: column;
+    align-items: center;
+  }
+    
+.AnnualHistory-content {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 10px 8px;
+  }
 
-    .HistoricalGraph-container {
-        min-width: 400px;
-        overflow-x: auto;
-        width: 100%;
-        padding-bottom: 10px;
-    }
+  .table-container,
+  .HistoricalGraph-container /*{ padding: 10px; }*/ {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 8px 4px;
+ }
 
-    .table-container {
-        width: 100%;
-        overflow-x: auto;
-        max-height: none;
-    }
+  .table-container table { font-size: 0.75rem; }
+
+  .table-container td { white-space: normal; }
+
+
+  .table-header-row td {
+    padding: 8px 4px;
+    white-space: normal;
+  }
+
+  .month-cell { padding-left: 4px; }
+
+  .HistoricalGraph-container { height: 320px; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .AnnualHistory-content { padding: 12px 20px; }
+
+  .HistoricalGraph-container { height: 70vh; }   /* só o gráfico */
 }
