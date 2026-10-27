@@ -4,6 +4,7 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { FiEyeOff, FiEye  } from "react-icons/fi";
 import { loginUser } from '../services/api';
+import Loading from '../Components/loading/loading';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ //estado para dados do formulário de login
@@ -15,6 +16,8 @@ const Login = () => {
 
   const [error, setError] = useState(''); //estado para mensagem de erro
   const [successMessage, setSuccessMessage] = useState(''); //estado para mensagem de sucesso
+
+  const [removeLoading, setRemoveLoading] = useState(false); //estado para mostrar o loading
 
   const navigate=useNavigate(); //estado para redirecionar para a página de dashboard
 
@@ -32,6 +35,8 @@ const Login = () => {
       return;
     }
 
+    setRemoveLoading(true); //mostra o loading
+
     try {
       const response = await loginUser({ //chama a função importada de api.js
         email: loginData.email,
@@ -47,6 +52,8 @@ const Login = () => {
       navigate('/Dashboard'); //Redireciona para a página de dashboard após o login bem-sucedido
     } catch (error) {
       setError(error.message || 'Erro ao realizar login.'); //exibe a mensagem de erro retornada pelo backend
+
+      setRemoveLoading(false); //oculta o loading em caso de erro
     }
   };
 
@@ -104,6 +111,7 @@ const Login = () => {
           Entrar
         </button>
         </form>
+        {removeLoading && <Loading />}
       </div>
     </div>
     </div>
