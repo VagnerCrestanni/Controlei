@@ -1,0 +1,49 @@
+.fundo-loading {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .imagem-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+.OverlayFullScreen {
+    position:fixed;
+    inset: 0;
+    left: 0;
+    z-index: 9999;
+    
+    background-color: #100068;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span.LoadingText {
+    width: 60px;
+    height: 60px;
+    border: 8px solid rgba(255, 255, 255, 0.1); /*Cor da borda do círculo*/
+    border: 8px solid #00bca4;
+    border-top: 8px solid transparent;
+    border-radius: 50%;
+
+    animation: loading 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    box-shadow: 0 0 15px rgba(0, 188, 164, 0.4);
+ }
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
