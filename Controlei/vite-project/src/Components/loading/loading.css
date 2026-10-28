@@ -16,15 +16,25 @@
   }
 
 .OverlayFullScreen {
-    position:fixed;
-    inset: 0;
+    position:fixed;  /* Garante que cubra a tela inteira em todas as direções */
+    top: 0;
     left: 0;
-    z-index: 9999;
+    right: 0;
+    bottom: 0;
+
+    height: 100vh; /* Fallback para navegadores antigos */
+    height: 100dvh; /* Dynamic Viewport Height para mobile) */
+    width: 100vw;
+    width: 100dvw;
     
+    z-index: 9999;
     background-color: #100068;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden; /* Evita que o usuário consiga rolar a página por trás enquanto carrega */
 }
 
 span.LoadingText {
