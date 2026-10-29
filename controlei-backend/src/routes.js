@@ -22,27 +22,23 @@ export async function userRoutes(app) {
             const firstError = validation.error.issues[0].message;
             return reply.status(400).send({ error: firstError });
          }
-
         try { // se os dados não baterem com o formato esperado, o Zod vai lançar um erro
             const newUser = await registerUser(validation.data) //chama a função que sabe como salvar
-            return reply.status(201).send(newUser) //devolve uma resposta pro frontend
-       
+            return reply.status(201).send(newUser) //devolve uma resposta pro frontend    
         } catch (error) {
-
             if (error instanceof Error) { //verifica se o erro é zod
                  return reply.status(400).send({ error: error.message })
                 }
-
             return reply.status(500).send({ error: 'Erro interno do servidor' })
         }
     })
+
 
     await app.register ( rateLimit, {
     global: false, // desabilita o rate limit global
     })
 
     app.post('/login', {
-
         config: { //configurações de limite de tentatiivas de login
             rateLimit: {
                 max: parseInt(process.env.LOGIN_MAX_ATTEMPTS) || 5, // máximo de 5 requisições
@@ -70,12 +66,9 @@ export async function userRoutes(app) {
             const firstError = validation.error.issues[0].message;
             return reply.status(400).send({ error: firstError });
          }
-
         try {
             const { email, password } = validation.data; //valida os dados que vieram do frontend
-    
             const user = await loginUser(email, password) //chama a função que sabe como logar
-
             const token = await reply.jwtSign( //gera o token JWT
                 {sub: user.id,
                 name : user.name},
@@ -83,7 +76,6 @@ export async function userRoutes(app) {
                 sign: { expiresIn: '2h' } //expira em 2 horas
                 }
         )
-
             return reply.status(200).send({
                 message: 'Login realizado com sucesso',
                 token,
@@ -98,6 +90,7 @@ export async function userRoutes(app) {
     })
 }
 
+
 export async function transactionRoutes(app) {
     app.addHook ('onRequest', authHook) //adiciona o hook de autenticação para todas as rotas abaixo
 
@@ -110,7 +103,6 @@ export async function transactionRoutes(app) {
             date: z.coerce.date().transform((date)=> date.toISOString()),
             type: z.enum(['income', 'expense', 'investment']),
         })
-
         // 1. RECEBE - pega os dados que vieram do frontend
         let Transaction;
         try { // se os dados não baterem com o formato esperado, o Zod vai lançar um erro
@@ -118,38 +110,80 @@ export async function transactionRoutes(app) {
         } catch (error) {
             return reply.status(400).send({ error: error.errors })
         }
-
         const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
-
         // 2. PREPARA - chama a função que sabe como salvar
          const newTransaction = await createTransaction({...Transaction, userId})
-
          // 3. ENTREGA - devolve uma resposta pro frontend
          return reply.status(201).send(newTransaction)
     })
 
-    app.get('/transactions', async (request, reply) => { // 1. PREPARA - chama a função que sabe como listar
-        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
 
+    app.get('/transactions', async (request, reply) => { 
+        // 1. PREPARA - chama a função que sabe como listar
+        const userId = request.user.sub  //pega o id do usuário que está logado, que foi adicionado no token JWT
         const transactions = await listTransactions( userId, request.query.month, request.query.year )
-
         return reply.send(transactions)
     })
 
-    app.get('/transactions/summary', async (request, reply) => {  // 1. PREPARA - chama a função que sabe como listar
-        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
-       
-        const summary = await summaryTransactions( userId, request.query.month, request.query.year )
 
+    app.get('/transactions/summary', async (request, reply) => {  
+        // 1. PREPARA - chama a função que sabe como listar
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT     
+        const summary = await summaryTransactions( userId, request.query.month, request.query.year )
         return reply.send(summary)
     })
 
-    app.get('/transactions/history', async (request, reply) => {    // Rota para o Histórico financeiro
-        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
-       
-        const history = await transactionsHistory (userId) 
 
+    app.get('/transactions/history', async (request, reply) => {   
+         // Rota para o Histórico financeiro
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+        const history = await transactionsHistory (userId) 
         return reply.send (history)
+    })
+
+
+    app.put('/transactions/:id', async (request, reply) => {
+        // Rota para atualizar uma transação
+        const transactionUpdateSchema = z.object ({
+            who: z.string(),
+            company: z.string(),
+            value: z.number(),
+            date: z.coerce.date().transform((date)=> date.toISOString()).optional(),
+            type: z.string(),
+        })
+
+        const updateParamsSchema = z.object({ //valida o id que vem na url
+            id: z.string().uuid('ID inválido'),
+        })
+        try {
+            const { id } = updateParamsSchema.parse(request.params) //valida o id que vem na url
+            const transactionData = transactionUpdateSchema.parse(request.body) //valida os dados que vieram do frontend
+            const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+            const updatedTransaction = await updateTransaction(id, userId, transactionData) //chama a função que sabe como atualizar
+            return reply.status(200).send(updatedTransaction) //devolve uma resposta pro frontend
+        
+        }catch ( error ) {
+            return reply.status(400).send({ error: error.errors || error.message })
+        }
+
+    }) 
+
+
+    app.delete('/transactions/:id', async (request, reply) => {
+        // Rota para deletar uma transação
+        const deleteParamsSchema = z.object({
+            id: z.string().uuid('ID inválido'),
+        })
+        try {
+            const { id } = deleteParamsSchema.parse(request.params) //valida o id que vem na url
+            const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+
+            await deleteTransaction(id, userId) //chama a função que sabe como deletar
+            return reply.status(204).send() //devolve uma resposta pro frontend
+        
+        }catch ( error ) {
+            return reply.status(400).send({ error: error.errors || error.message })
+        }
     })
 }
 
@@ -164,7 +198,6 @@ export async function goalRoutes(app) {
             value: z.number(),
             type: z.enum(['income', 'expense', 'investment']),
         })
-
         let goal;
         try { // se os dados não baterem com o formato esperado, o Zod vai lançar um erro
             goal = createGoalSchema.parse(request.body);
@@ -173,10 +206,8 @@ export async function goalRoutes(app) {
         }
 
         const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
-
         // 2. PREPARA - chama a função que sabe como salvar
         const newGoal = await createGoal({...goal, userId})
-
         // 3. ENTREGA - devolve uma resposta pro frontend
         return reply.status(201).send(newGoal)
         })
