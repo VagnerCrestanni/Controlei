@@ -1,6 +1,6 @@
 import fastify from 'fastify';
 import { registerUser, loginUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
-createGoal, listGoals} from './service.js';
+    putTransaction, deleteTransaction, createGoal, listGoals, putGoal, deleteGoal} from './service.js';
 import { authHook}  from './authHook.js';
 import rateLimit from '@fastify/rate-limit';
 import { z } from 'zod';
@@ -143,7 +143,7 @@ export async function transactionRoutes(app) {
 
 
     app.put('/transactions/:id', async (request, reply) => {
-        // Rota para atualizar uma transação
+        // Rota para editar uma transação
         const transactionUpdateSchema = z.object ({
             who: z.string(),
             company: z.string(),
@@ -153,13 +153,17 @@ export async function transactionRoutes(app) {
         })
 
         const updateParamsSchema = z.object({ //valida o id que vem na url
-            id: z.string().uuid('ID inválido'),
+            id: z.string().uuid({message:'ID inválido'}),
         })
         try {
             const { id } = updateParamsSchema.parse(request.params) //valida o id que vem na url
             const transactionData = transactionUpdateSchema.parse(request.body) //valida os dados que vieram do frontend
             const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
-            const updatedTransaction = await updateTransaction(id, userId, transactionData) //chama a função que sabe como atualizar
+            const updatedTransaction = await putTransaction({  //chama a função que sabe como atualizar
+                transactionId: id,
+                userId,
+                transactionData
+            })
             return reply.status(200).send(updatedTransaction) //devolve uma resposta pro frontend
         
         }catch ( error ) {
@@ -172,14 +176,14 @@ export async function transactionRoutes(app) {
     app.delete('/transactions/:id', async (request, reply) => {
         // Rota para deletar uma transação
         const deleteParamsSchema = z.object({
-            id: z.string().uuid('ID inválido'),
+            id: z.string().uuid({message:'ID inválido'}),
         })
         try {
             const { id } = deleteParamsSchema.parse(request.params) //valida o id que vem na url
             const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
 
-            await deleteTransaction(id, userId) //chama a função que sabe como deletar
-            return reply.status(204).send() //devolve uma resposta pro frontend
+            const response = await deleteTransaction(id, userId) //chama a função que sabe como deletar
+            return reply.status(200).send(response) //devolve uma resposta pro frontend
         
         }catch ( error ) {
             return reply.status(400).send({ error: error.errors || error.message })
@@ -219,4 +223,48 @@ app.get('/goals', async (request, reply) => { // 1. PREPARA - chama a função q
     const goals = await listGoals(userId)
     return reply.send(goals)
 })
+
+
+app.put('/goals/:id', async (request, reply) => {
+    // Rota para editar uma meta
+    const goalsUpdateSchema = z.object ({
+        endDate: z.coerce.date().transform((date)=> date.toISOString()),
+        value: z.number(),
+        type: z.enum(['income', 'expense', 'investment']),
+    })
+    const updateParamsSchema = z.object({ //valida o id que vem na url
+        id: z.string().uuid('ID inválido'),
+    })
+    let updatedGoal;
+    try {
+        const { id } = updateParamsSchema.parse(request.params) //valida o id que vem na url
+        const goalData = goalsUpdateSchema.parse(request.body) //valida os dados que vieram do frontend
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+        updatedGoal = await putGoal({ //chama a função que sabe como atualizar
+            goalId: id,
+            userId,
+            goalData
+        }) 
+        return reply.status(200).send(updatedGoal) //devolve uma resposta pro frontend
+    } catch (error) {
+        return reply.status(400).send({ error: error.errors || error.message })
+    }
+  })
+
+
+app.delete('/goals/:id', async (request, reply) => {
+    // Rota para deletar uma meta
+    const deleteParamsSchema = z.object({
+        id: z.string().uuid('ID inválido'),
+    })
+    try {
+        const { id } = deleteParamsSchema.parse(request.params) //valida o id que vem na url
+        const userId = request.user.sub //pega o id do usuário que está logado, que foi adicionado no token JWT
+        const response = await deleteGoal(id, userId) //chama a função que sabe como deletar
+        return reply.status(200).send(response) //devolve uma resposta pro frontend
+    } catch (error) {
+        return reply.status(400).send({ error: error.errors || error.message })
+    }
+})
+
 }

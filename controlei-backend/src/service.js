@@ -134,6 +134,57 @@ export async function transactionsHistory(userId) { //função para o histórico
 }
 
 
+export async function putTransaction({transactionId, userId, transactionData}) {  //função para editar uma transação
+
+    const transaction = await prisma.transaction.findFirst({ //verifica se a transação existe no banco de dados, uso findFirst para evitar erro caso não exista
+        where: {
+            id: transactionId,
+            userId: userId,
+        },
+    });
+    if (!transaction) {
+        throw new Error('Transação não encontrada');
+    }
+
+    const updateTransaction = await prisma.transaction.update({ //atualiza a transação no banco de dados
+        where: {
+            id: transactionId,
+        },
+        data: {
+            who: transactionData.who,
+            company: transactionData.company,
+            value: transactionData.value,
+            date: transactionData.date,
+            type: transactionData.type,
+        }
+    })
+    return { 
+        success: true,
+        message: 'Transação atualizada com sucesso',
+        data: updateTransaction
+    };
+}
+
+
+export async function deleteTransaction(transactionId, userId) { //função para deletar uma transação
+
+    const transaction = await prisma.transaction.deleteMany({ //verifica se a transação existe no banco de dados, usando deleteMany para evitar erro caso não exista
+        where: {
+            id: transactionId,
+            userId: userId,
+        },
+    });
+    if (transaction.count === 0) {
+        throw new Error('Transação não encontrada');
+    }
+    return {
+        success: true,
+         message: 'Transação deletada com sucesso',
+         data: deleteTransaction
+    };
+}
+
+
 export async function createGoal(goal) {    //função para criar uma meta financeira
 
     const newGoal = await prisma.goal.create({
@@ -147,6 +198,7 @@ export async function createGoal(goal) {    //função para criar uma meta finan
     return newGoal;
 }
 
+
 export async function listGoals (userId) {    //função para listar as metas financeiras
    
     const goals = await prisma.goal.findMany({
@@ -155,4 +207,49 @@ export async function listGoals (userId) {    //função para listar as metas fi
         }
     })
     return goals;
+}
+
+
+export async function putGoal({goalId, userId, goalData}) {  //função para editar uma meta financeira
+
+    const goal = await prisma.goal.findFirst({ //verifica se a meta existe no banco de dados, uso findFirst para evitar erro caso não exista
+        where: {
+            id: goalId,
+            userId: userId,
+        },
+    });
+    if (!goal) {
+        throw new Error('Meta não encontrada');
+    }
+
+    const updateGoal = await prisma.goal.update({ //atualiza a meta no banco de dados
+        where: {
+            id: goalId,
+        },
+        data: {
+            endDate: goalData.endDate,
+            value: goalData.value,
+            type: goalData.type,
+        }
+    })
+    return updateGoal;
+}
+
+
+export async function deleteGoal(goalId, userId) { //função para deletar uma meta financeira
+
+    const goal = await prisma.goal.deleteMany({//verifica se a meta existe no banco de dados, usando deleteMany para evitar erro caso não exista
+        where: {
+            id: goalId,
+            userId: userId,
+        },
+    })
+    if (goal.count === 0) {
+        throw new Error('Meta não encontrada');
+    }
+    return {
+        success: true,
+        message: 'Meta deletada com sucesso',
+        data: deleteGoal
+    }
 }
