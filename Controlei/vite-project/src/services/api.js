@@ -69,6 +69,25 @@ export async function getHistory() { //Conecta o transactionsHistory do backend 
     return response.json();
 }
 
+
+export async function putTransaction(transactionId, transactionData) { //Conecta o putTransaction do backend com o front end, passando os dados do formulário para a API
+    const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(transactionData)
+    });
+    return response.json();
+}
+
+export async function deleteTransaction(transactionId) { //Conecta o deleteTransaction do backend com o front end, passando o id da transação para a API
+    const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
+        method: 'DELETE', 
+        headers: getHeaders(),
+    });
+    return response.json();
+}
+
+
 export async function createGoal(data) { //Conecta o createGoal do backend com o front end, passando os dados do formulário para a API
     const response = await fetch(`${BASE_URL}/goals`, {
         method: 'POST',
@@ -81,6 +100,24 @@ export async function createGoal(data) { //Conecta o createGoal do backend com o
 export async function listGoals() { //Conecta o listGoals do backend com o front end, para listar as metas
     const response = await fetch(`${BASE_URL}/goals`, {
         method: 'GET',
+        headers: getHeaders(),
+    });
+    return response.json();
+}
+
+export async function putGoal(goalId, goalData) { //Conecta o putGoal do backend com o front end, passando os dados do formulário para a API
+    const response = await fetch(`${BASE_URL}/goals/${goalId}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(goalData)
+    });
+    return response.json();
+}
+
+
+export async function deleteGoal(goalId) { //Conecta o deleteGoal do backend com o front end, passando o id da meta para a API
+    const response = await fetch(`${BASE_URL}/goals/${goalId}`, {
+        method: 'DELETE',
         headers: getHeaders(),
     });
     return response.json();
