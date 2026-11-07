@@ -13,6 +13,9 @@ import { userRoutes, transactionRoutes, goalRoutes } from './src/routes.js';
 
     await server.register(cors, {
         origin: process.env.FRONTEND_URL || 'http://localhost:5173', //FRONTEND_URL é a variável de ambiente que armazena a URL do front end, caso não exista, será usado o valor padrão 'http://localhost:5173'
+        methods: ['GET', 'POST', 'PUT', 'DELETE'], //Métodos permitidos
+        allowedHeaders: ['Content-Type', 'Authorization'], //Cabeçalhos permitidos
+        credentials: true //Permite o envio de cookies
     });
 
     await server.register(fastifyJwt, {

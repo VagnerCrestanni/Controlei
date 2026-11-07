@@ -83,6 +83,7 @@ export async function deleteTransaction(transactionId) { //Conecta o deleteTrans
     const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
         method: 'DELETE', 
         headers: getHeaders(),
+        body: JSON.stringify({ id: transactionId }) 
     });
     return response.json();
 }

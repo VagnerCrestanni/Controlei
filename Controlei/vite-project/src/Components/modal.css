@@ -1,0 +1,182 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Garante que fica por cima de tudo */
+}
+
+/* A caixinha branca do pop-up */
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 32px 24px 24px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-actions-container {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 12px;                  
+  margin-top: 24px;          
+}
+
+/* Base comum para todos os botões do modal (tamanho e formato) */
+.modal-actions-container button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.CardFinancialControl li {
+  background: #f8f9fa;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;  
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.CardFinancialControl li:hover {
+  background: #ffffff; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+  transform: translateY(-2px); 
+}
+
+/* Um container invisível para os dados textuais (opcional para organizar o texto) */
+.transaction-info {
+  font-size: 14px;
+  gap: 8px;
+  color: #333333;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Container que alinha os botões de Editar e Excluir lado a lado na direita */
+.transaction-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-Edit,
+.btn-Delete {
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-edit {
+  color: #008b89;
+  background: #e6f7f5;
+  border: 1px solid #bce9e5;
+  border-radius: 999px;  /* formato pílula */
+}
+.btn-edit:hover {
+  background: #d1f0ec;
+  transform: translateY(-1px);
+}
+
+/* Excluir: contorno vermelho (ação perigosa) */
+.btn-delete {
+  color: #dc5555;
+  background: #fff0f0;
+  border: 1px solid #ffd1d1;
+  border-radius: 999px;  /* formato pílula */
+}
+.btn-delete:hover {
+  background: #ffe1e1;
+  transform: translateY(-1px);
+}
+
+/* Botão de Confirmar Exclusão (Ação Perigosa/Alerta) */
+.btn-perigo {
+  background-color: #dc3545; 
+  color: white;
+  border: none;
+}
+
+.btn-perigo:hover {
+  background-color: #bd2130; 
+}
+
+/* Botão de Cancelar (Ação Neutra) */
+.btn-cancelar {
+  background-color: transparent;
+  color: #666666;
+  border: 1px solid #cccccc;
+}
+
+.btn-cancelar:hover {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;     
+  right: 16px;
+  background: none;
+  border: none;
+  /*Melhora o visual do "X"*/
+  font-size: 28px; 
+  color: #888888;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+  /* Centraliza o caractere perfeitamente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.modal-close-btn:hover {
+  color: #333333;
+  background-color: #f0f0f0;
+}
+
+.modal-body form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;             
+  width: 100%;           
+  box-sizing: border-box;
+}
+
+.modal-body input {
+  width: 100%;          
+  padding: 12px;        
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 14px;
+  
+  /* Remove margens externas que podem estar empurrando o campo para o lado */
+  margin: 0;             
+  box-sizing: border-box; 
+}
+
+
+/*Garante que o botão de salvar acompanhe o tamanho dos inputs */
+.modal-body button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createTransaction, putTransaction, deleteTransaction } from '../services/api';
 import Modal from './modal';
+import { Pencil, Trash2 } from "lucide-react";
 
  
     const typeMapper = { //Mapeamento dos tipos de transação para o formato esperado pela API
@@ -88,11 +89,21 @@ import Modal from './modal';
 
       <ul>
         {(transactions || []).map((item, index) => (
-          <li key={index}>
+          <li className="transaction-item" key={index}>
+            <span className= "transaction-info">
             {item.who}- {item.company}- R$ {item.value}- 
             {(new Intl.DateTimeFormat('pt-BR').format(new Date(item.date)))} 
-            <button onClick={() => openEdit(item)}>Editar</button>
-            <button onClick={() => openDelete(item)}>Excluir</button>
+            </span>
+            <div className="transaction-actions">
+              <button className="btn-edit" onClick={() => openEdit(item)}>
+                <Pencil size={15} />
+                Editar
+              </button>
+              <button className="btn-delete" onClick={() => openDelete(item)}>
+                <Trash2 size={15} />
+                Excluir
+              </button>
+            </div>
           </li>
         ))}
       </ul>
@@ -122,9 +133,16 @@ import Modal from './modal';
 
       {modal === 'delete' && ( // Modal de confirmação de exclusão
         <Modal title="Confirmar Exclusão" onClose={closeModal}>
-          <p>Tem certeza que deseja excluir esta transação?</p>
-          <button onClick={handleDelete} className="btn-perigo">Confirmar Exclusão</button>
-          <button onClick={closeModal}>Cancelar</button>
+          <p style={{ color: '#444444', fontSize: '15px' }}>
+            Tem certeza que deseja excluir esta transação? Esta ação não poderá ser desfeita.
+          </p>
+          <div className="modal-actions-container">
+          <button onClick={handleDelete} className="btn-perigo">
+            Confirmar Exclusão</button>
+          <button onClick={closeModal} className="btn-cancelar">
+            Cancelar
+          </button>
+          </div>
         </Modal>
       )}
     </div>

@@ -2,12 +2,19 @@
     display: flex;
     justify-content: center;
     background-color: #f4f4f4;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
   }
   
   .FinancialControl-content {
     flex: 1;
     padding: 30px;
     background-color: #f4f4f4;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;    
+    overflow-y: auto;
   }
   
   .cardsFinancialControl-container {
@@ -15,13 +22,20 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
     margin-top: 20px;
+    align-items: start;
   }
   
   .CardFinancialControl {
     background: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cardFinancialControl:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-3px); 
   }
 
   .CardFinancialControl h3 {
@@ -62,7 +76,6 @@
   }
 
   
-  
   .btn-receita {
     margin-top: 10px;
     padding: 10px;
@@ -72,6 +85,12 @@
     border-radius: 10px;
     cursor: pointer;
     width: 100%;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .btn-receita:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-3px); 
   }
 
   @media (max-width: 768px) {
