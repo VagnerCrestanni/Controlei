@@ -91,8 +91,7 @@ import { Pencil, Trash2 } from "lucide-react";
         {(transactions || []).map((item, index) => (
           <li className="transaction-item" key={index}>
             <span className= "transaction-info">
-            {item.who}- {item.company}- R$ {item.value}- 
-            {(new Intl.DateTimeFormat('pt-BR').format(new Date(item.date)))} 
+            {item.who} - {item.company} - {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.value)} - {(new Intl.DateTimeFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(new Date(item.date)))} 
             </span>
             <div className="transaction-actions">
               <button className="btn-edit" onClick={() => openEdit(item)}>

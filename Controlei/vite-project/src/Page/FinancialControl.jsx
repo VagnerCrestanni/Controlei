@@ -38,13 +38,13 @@ import { listTransactions } from '../services/api';
       <h1>Controle financeiro</h1>
         <div className="cardsFinancialControl-container">
           <CardFinancialControl
-          title = "Renda" description = "Valores depositados" transactions = {income} refresh={refresh} setRefresh={setRefresh}
+          title = "Rendas" description = "Valores Depositados" transactions = {income} refresh={refresh} setRefresh={setRefresh}
           />
           <CardFinancialControl
-          title="Despesas" description = "contas pagas" transactions = {expenses} refresh={refresh} setRefresh={setRefresh}
+          title="Despesas" description = "Contas Pagas" transactions = {expenses} refresh={refresh} setRefresh={setRefresh}
           />
           <CardFinancialControl
-          title="Investimentos" description = "Valores investidos" transactions = {investments} refresh={refresh} setRefresh={setRefresh}
+          title="Investimentos" description = "Valores Investidos" transactions = {investments} refresh={refresh} setRefresh={setRefresh}
           />
         </div>
       </main>

@@ -74,7 +74,7 @@ useEffect(() => { // useEffect para buscar o resumo das transações do backend 
 
         <div className="cards-container">
           <CardDashboard 
-          title="Receitas" value={`R$ ${totalIncome.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+          title="Rendas" value={`R$ ${totalIncome.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
           goalCreate={goalIncome} onAddGoal={(newGoal) => setGoalIncome([...goalIncome, newGoal])}
           refresh={refresh} setRefresh={setRefresh}
           />

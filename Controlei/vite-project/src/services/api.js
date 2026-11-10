@@ -120,6 +120,7 @@ export async function deleteGoal(goalId) { //Conecta o deleteGoal do backend com
     const response = await fetch(`${BASE_URL}/goals/${goalId}`, {
         method: 'DELETE',
         headers: getHeaders(),
+        body: JSON.stringify({ id: goalId })
     });
     return response.json();
 }
