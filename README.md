@@ -22,7 +22,7 @@ O projeto está em fase de desenvolvimento contínuo e será atualizado com novo
 
 ## 🧠 Sobre o Projeto
 
-**Controlei** surgiu a partir de uma dificuldade familiar em visualizar para onde o dinheiro está indo ao longo dos meses. O Controlei surgiu para transformar dados financeiros em informações claras e visuais, facilitando decisões financeiras no dia a dia, com opções de aidionar renda, despesas e investimentos.
+**Controlei** surgiu a partir de uma dificuldade familiar em visualizar para onde o dinheiro está indo ao longo dos meses. O Controlei surgiu para transformar dados financeiros em informações claras e visuais, facilitando decisões financeiras no dia a dia, com opções de adicionar renda, despesas e investimentos.
 
 O app é ideal para usuários iniciantes e intermediários que desejam um controle total sobre suas finanças. Ele permite:
 
@@ -171,12 +171,11 @@ As seguintes funcionalidades já estão implementadas e totalmente estilizadas p
     * Rotas de transações e metas protegidas: sem token válido, a API recusa a requisição.
     * Isolamento de dados: cada usuário acessa apenas as próprias transações e metas.
 
+* **Editar e excluir transação e meta:** Incluidos métodos put e delete para transações e metas junto com um novo modal para adicionar e alterar uma meta e transação.
 ---
 
 ### 🔹 Evoluções Futuras
 * Relatórios mais avançados onde no histórico o usuario poderá visualizar em que usou o dinheiro e não apenas o valor.
-* Função de excluir uma transação ou meta.
-* Função de editar uma transação ou meta.
 * Função que mostra se a meta está sendo batida ou não.
 * Comparação entre períodos.
 * Exportação de dados.
