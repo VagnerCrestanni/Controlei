@@ -5,7 +5,7 @@ import { Pencil, Trash2 } from "lucide-react";
 
  
     const typeMapper = { //Mapeamento dos tipos de transação para o formato esperado pela API
-      'Renda': 'income',
+      'Rendas': 'income',
       'Despesas': 'expense',
       'Investimentos': 'investment'
     }
@@ -37,7 +37,10 @@ import { Pencil, Trash2 } from "lucide-react";
     const openEdit = (transaction) => {
       setModal('edit');
       setSelectedTransaction(transaction);
-      setForm(transaction); // Preenche o formulário com os dados da transação selecionada
+      setForm({
+        ...transaction,
+        date: transaction.date ? transaction.date.split('T')[0] : ''
+      }); // Preenche o formulário com os dados da transação selecionada
     }
 
     const openDelete = (transaction) => { // Abre o modal de exclusão de transação
@@ -91,7 +94,7 @@ import { Pencil, Trash2 } from "lucide-react";
         {(transactions || []).map((item, index) => (
           <li className="transaction-item" key={index}>
             <span className= "transaction-info">
-            {item.who} - {item.company} - {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.value)} - {(new Intl.DateTimeFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(new Date(item.date)))} 
+            {item.who} - {item.company} - {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.value)} - {(new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(item.date)))} 
             </span>
             <div className="transaction-actions">
               <button className="btn-edit" onClick={() => openEdit(item)}>

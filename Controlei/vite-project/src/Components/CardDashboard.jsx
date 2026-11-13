@@ -89,7 +89,7 @@ import { Pencil, Trash2 } from "lucide-react";
             <li className="goal-item" key={index}>
               <span className="goal-info">
                 <strong>Meta:</strong> 
-                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(create.value)} - até {new Intl.DateTimeFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(new Date(create.endDate))}
+                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(create.value)} - até {new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(create.endDate))}
                 </span>
                 <div className="goal-actions">
                   <button className="btn-edit" onClick={() => openEdit(create)}>
