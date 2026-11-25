@@ -19,6 +19,18 @@ model User {
   updated_at DateTime @updatedAt
   transactions Transaction[]
   goals Goal[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id      String @id @default(uuid())
+  userId  String
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resetTokenHash    String   @unique
+  resetTokenExpires DateTime
+  created_at          DateTime @default(now())
+
+  @@index([userId])
 }
 
 model Transaction {

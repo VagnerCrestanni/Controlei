@@ -88,6 +88,11 @@ export async function userRoutes(app) {
         return reply.status(401).send({ error: error.message})
         }
     })
+
+    //Rota para esqueci minha senha
+    app.post ('/forgotPassword', (request, reply)=>{
+
+    } )
 }
 
 
