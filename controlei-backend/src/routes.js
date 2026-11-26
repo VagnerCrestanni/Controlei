@@ -90,8 +90,27 @@ export async function userRoutes(app) {
     })
 
     //Rota para esqueci minha senha
-    app.post ('/forgotPassword', (request, reply)=>{
+    app.post ('/forgotPassword', async (request, reply)=>{
 
+        const forgotPasswordSchema = z.object ({
+             email: z.string({ required_error: 'E-mail obrigatório' }).email('E-mail inválido'),
+        })
+
+        const validation = forgotPasswordSchema.safeParse(request.body);
+        if (!validation.success) {
+            const firstError = validation.error.issues[0].message;
+            return reply.status(400).send({ error: firstError });
+        }
+        try {
+            const { email } = validation.data;
+            //await forgotPasswordService(email, 'http://localhost:3333/reset-password?token=teste123');
+            return reply.status(200).send({
+                message: 'Se o e-mail estiver cadastrado, enviaremos as instruções de recuperação.'
+            })
+        } catch (error) {
+            console.error('Erro detalhado:', error); 
+            return reply.status(500).send({ error: 'Erro ao processar solicitação.' });
+        }
     } )
 }
 

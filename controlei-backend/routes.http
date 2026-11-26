@@ -137,3 +137,12 @@ Authorization: Bearer {{loginUser2.response.body.token}}
 GET http://localhost:3333/goals
 Content-Type: application/json
 Authorization: Bearer {{loginUser2.response.body.token}}
+
+
+### Esqueci minha senha
+POST http://localhost:3333/forgotPassword
+Content-Type: application/json
+
+{
+  "email": "teste2@teste.com"
+}
