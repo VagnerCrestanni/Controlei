@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import { registerUser, loginUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
+import { registerUser, loginUser,forgotPasswordUser ,createTransaction, listTransactions, summaryTransactions, transactionsHistory, 
     putTransaction, deleteTransaction, createGoal, listGoals, putGoal, deleteGoal} from './service.js';
 import { authHook}  from './authHook.js';
 import rateLimit from '@fastify/rate-limit';
@@ -103,7 +103,7 @@ export async function userRoutes(app) {
         }
         try {
             const { email } = validation.data;
-            //await forgotPasswordService(email, 'http://localhost:3333/reset-password?token=teste123');
+            await forgotPasswordUser(email, 'http://localhost:3333/reset-password?token=teste123');
             return reply.status(200).send({
                 message: 'Se o e-mail estiver cadastrado, enviaremos as instruções de recuperação.'
             })

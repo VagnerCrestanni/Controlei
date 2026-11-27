@@ -9,7 +9,7 @@ export const transport = nodemailer.createTransport({
   },
 });
 
-export async function sendForgotPasswordEmail(to: string, resetLink: string) {
+export async function sendForgotPasswordEmail(to, resetLink) {
   await transport.sendMail({
     from: process.env.MAIL_FROM,
     to,

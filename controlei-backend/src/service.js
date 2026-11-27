@@ -1,5 +1,7 @@
 import { prisma } from './prisma.js';
+import {sendForgotPasswordEmail} from '../lib/mail.js'
 import bcrypt from 'bcryptjs';
+import crypto from 'node:crypto';
 
 export async function registerUser(user) { 
       //função para registrar usuário
@@ -46,6 +48,33 @@ export async function loginUser(email, password) {
         name: user.name,
     };
 }
+
+
+export async function forgotPasswordUser(email) {  //função esqueci minha senha
+    const User = await prisma.user.findUnique({
+        where: { email }
+    })
+    if (!User) {
+        return
+    }
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetTokenHash = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+    const resetTokenExpires = new Date(Date.now() + 60 * 60 * 1000); //1 hora para expirar o token
+
+    await prisma.passwordResetToken.create ({
+        data: {
+            userId: User.id,
+            resetTokenHash,
+            resetTokenExpires,
+        },
+    });
+    const resetLink = `http://localhost:5173/reset-password?token=${resetToken}`;
+    await sendForgotPasswordEmail(User.email, resetLink)
+}
+
 
 export async function createTransaction(transaction) {  
     

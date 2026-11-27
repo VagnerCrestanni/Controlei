@@ -146,3 +146,11 @@ Content-Type: application/json
 {
   "email": "teste2@teste.com"
 }
+
+### Testar envio de recuperação de senha
+POST http://localhost:3333/forgotPassword
+Content-Type: application/json
+
+{
+  "email": "teste2@teste.com"
+}
